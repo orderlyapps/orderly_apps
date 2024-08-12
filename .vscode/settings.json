@@ -500,5 +500,8 @@
     { "path": "libs/feature", "color": "cyan" },
     { "path": "supabase", "color": "blue" }
   ],
-  "glean.switchToTarget": true
+  "glean.switchToTarget": true,
+  "conventionalCommits.scopes": [
+    "people"
+  ]
 }

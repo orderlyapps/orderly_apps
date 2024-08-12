@@ -11,7 +11,12 @@ const peopleKeys = {
 };
 
 type Person = Database["public"]["Tables"]["people"]["Insert"];
-type Publisher = Database["public"]["Views"]["publishers"]["Row"];
+
+type PersonAny = {
+  [K in keyof Person]: any;
+};
+
+export type Publisher = Database["public"]["Views"]["publishers"]["Row"];
 
 // QUERIES
 
@@ -29,7 +34,6 @@ async function getPublishers() {
   }
   throw error;
 }
-
 async function getPublisher(id: string) {
   const { data, error } = await supabase
     .from("publishers")
@@ -41,19 +45,19 @@ async function getPublisher(id: string) {
   }
   throw error;
 }
-
-async function upsertPerson(newData: Person) {
-  console.log("newData:", newData);
+async function upsertPerson(newData: Publisher) {
+  function personify(publisher: Publisher): PersonAny {
+    const { is_admin, ...person } = publisher;
+    return person;
+  }
   const { data, error } = await supabase
     .from("people")
-    .upsert(newData)
+    .upsert(personify(newData))
     .select()
     .single();
   if (data) {
-    console.log("upsertPerson() data:", data);
     return data;
   }
-  console.error("upsertPerson() error:", error);
   throw error;
 }
 
@@ -82,7 +86,7 @@ export const useUpsertPersonMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (person: Person) => upsertPerson(person),
+    mutationFn: (person: Publisher) => upsertPerson(person),
     onSuccess: (people) => {
       queryClient.setQueryData(peopleKeys.all, (oldData: Person[]) =>
         oldData ? [...oldData, people] : [people]

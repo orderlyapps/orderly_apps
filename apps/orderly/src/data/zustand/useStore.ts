@@ -3,10 +3,11 @@ import { persist } from "zustand/middleware";
 import { createSelectors } from "./createSelectors";
 import { Database } from "../../util/supabase-types";
 import { Session } from "@supabase/supabase-js";
+import { Publisher } from "../../features/people/queries/usePeople";
 
 const initialState = {
-  personDetails: {} as Database["public"]["Tables"]["people"]["Insert"],
-  user: {} as Database["public"]["Tables"]["people"]["Insert"],
+  personDetails: {} as Publisher,
+  user: {} as Publisher,
   congregationDetails:
     {} as Database["public"]["Tables"]["congregations"]["Update"],
   session: null as Session | null,
