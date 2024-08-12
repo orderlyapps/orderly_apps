@@ -1,0 +1,33 @@
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonSpinner,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/react';
+import { Suspense } from 'react';
+
+export default function {{ pascalCase name }}Page() {
+  return (
+       <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot='start'>
+            <IonBackButton></IonBackButton>
+          </IonButtons>
+          <IonTitle>{{ titleCase name }}</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <Suspense fallback={<IonSpinner />}>
+         <div className='full centered'>{{ titleCase name }}</div>
+        </Suspense>
+      </IonContent>
+    </IonPage>
+  );
+};
+
+// generated

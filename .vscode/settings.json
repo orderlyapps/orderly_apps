@@ -1,7 +1,504 @@
 {
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
+  "files.exclude": {
+    // "**/dist": true,
+    // "**/dev-dist": true,
+    // "**/apps/templates": true,
+
+    // "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+
+    // FOLDERS
+    "**/.turbo": true,
+    // "**/node_modules": true,
+    "**/.wrangler": true
+    // "**/packages": true
+  },
+  "commands.workspaceCommands": {
+    "parent": {
+      "inputs": [
+        {
+          "type": "pickString",
+          "id": "name",
+          "description": "What do you want to do?",
+          "options": [
+            "deploy",
+            "turbo",
+            "workbox",
+            "supabase",
+            "terminal",
+            "refactor"
+          ]
+        }
+      ],
+      "command": "commands.run",
+      "args": [{ "command": "${input:name}" }]
+    },
+
+    "terminal": {
+      "nestedItems": {
+        "cd to app": {
+          "sequence": [
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "${input:name}",
+                "reveal": true,
+                "text": "cd apps/${input:name}"
+              },
+              "command": "commands.runInTerminal",
+              "inputs": [
+                {
+                  "type": "pickString",
+                  "id": "name",
+                  "description": "Which app??",
+                  "options": [
+                    "orderly",
+                    "native",
+                    "react-native",
+                    "framework-7",
+                    "pwa-starter"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+
+    "deploy": {
+      "nestedItems": {
+        "deploy apps ": {
+          "sequence": [
+            {
+              "command": "commands.focusTerminal",
+              "args": "deploy"
+            },
+            {
+              "command": "workbench.action.terminal.kill"
+            },
+            {
+              "command": "commands.runInTerminal",
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "deploy",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "${input:name}"
+              },
+              "inputs": [
+                {
+                  "type": "pickString",
+                  "id": "name",
+                  "description": "What do you want to do?",
+                  "options": [
+                    {
+                      "label": "orderly (experimental)",
+                      "value": "turbo build --filter orderly && cd apps/orderly && npx wrangler pages deploy dist --project-name=orderly --branch=experimental"
+                    },
+                    {
+                      "label": "ionic-starter (experimental)",
+                      "value": "turbo build:web --filter ionic-starter && cd apps/templates/ionic-starter && npx wrangler pages deploy dist --project-name=orderly --branch=experimental"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+
+    "workbox": {
+      "nestedItems": {
+        "wizard": {
+          "sequence": [
+            {
+              "inputs": [
+                {
+                  "type": "pickString",
+                  "id": "app",
+                  "description": "Which app??",
+                  "options": ["orderly"]
+                }
+              ],
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "workbox wizard",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "cd apps/${input:app} && npx workbox wizard "
+              },
+              "command": "commands.runInTerminal"
+            }
+          ]
+        }
+      }
+    },
+
+    "turbo": {
+      "nestedItems": {
+        "dev": {
+          "command": "commands.runInTerminal",
+          "args": {
+            "text": "${input:name}",
+            "reveal": true,
+            "reuse": "newest",
+            "icon": "circle-filled",
+            "iconColor": "charts.green",
+            "name": "turbo dev"
+          },
+          "inputs": [
+            {
+              "type": "pickString",
+              "id": "name",
+              "description": "Which app??",
+              "options": [
+                { "label": "orderly", "value": "turbo dev --filter orderly" },
+                {
+                  "label": "ionic-starter",
+                  "value": "turbo dev --filter ionic-starter"
+                },
+                {
+                  "label": "vite-project",
+                  "value": "turbo dev --filter vite-project"
+                },
+                {
+                  "label": "framework-7-typescript",
+                  "value": "turbo dev --filter framework-7-typescript"
+                },
+                { "label": "native", "value": "turbo dev --filter native" },
+                {
+                  "label": "react-native",
+                  "value": "turbo dev --filter react-native"
+                },
+                {
+                  "label": "framework-7",
+                  "value": "turbo dev --filter framework-7"
+                },
+                {
+                  "label": "pwa-starter",
+                  "value": "turbo dev --filter pwa-starter"
+                }
+              ]
+            }
+          ]
+        },
+        "gen": {
+          "nestedItems": {
+            "gen workspace": {
+              "command": "commands.runInTerminal",
+              "args": {
+                "text": "${input:name}",
+                "reveal": true,
+                "reuse": "newest",
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "turbo gen"
+              },
+              "inputs": [
+                {
+                  "type": "pickString",
+                  "id": "name",
+                  "description": "Which command??",
+                  "options": ["turbo gen workspace --copy"]
+                }
+              ]
+            },
+            "gen files": {
+              "sequence": [
+                {
+                  "args": {
+                    "icon": "circle-filled",
+                    "iconColor": "charts.green",
+                    "name": "generate",
+                    "reuse": "newest",
+                    "reveal": true,
+                    "text": "clear && turbo gen"
+                  },
+                  "command": "commands.runInTerminal"
+                }
+              ]
+            }
+          }
+        },
+      }
+    },
+
+    "testing": {
+      "nestedItems": {
+        "Test Command": {
+          "sequence": [
+            {
+              "command": "search.action.focusFilesToExclude"
+            }
+          ]
+        }
+      }
+    },
+
+    "serve": {
+      "nestedItems": {
+        "serve orderly": {
+          "sequence": [
+            {
+              "command": "commands.focusTerminal",
+              "args": "orderly"
+            },
+            {
+              "command": "workbench.action.terminal.kill"
+            },
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "orderly",
+                "reuse": "newest",
+                "text": "lsof -t -i tcp:3000 | xargs kill -9"
+              },
+              "command": "commands.runInTerminal"
+            },
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "orderly",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "turbo run dev --filter=orderly "
+              },
+              "command": "commands.runInTerminal"
+            },
+            {
+              "args": {
+                "color": "#3cff00",
+                "message": "admin started",
+                "timeout": 5000
+              },
+              "command": "commands.showStatusBarNotification"
+            }
+          ]
+        }
+      }
+    },
+
+    "refactor": {
+      "nestedItems": {
+        "extract component to file": {
+          "sequence": [
+            {
+              "command": "extension.glean.react.extract-component-to-file"
+            }
+          ]
+        },
+        "wrap in fragment": {
+          "sequence": [
+            {
+              "command": "editor.action.insertSnippet",
+              "args": {
+                "name": "-Wrap in fragment"
+              }
+            },
+            {
+              "command": "editor.action.formatDocument"
+            }
+          ]
+        }
+      }
+    },
+
+    "generate": {
+      "nestedItems": {
+        "react component": {
+          "command": "commands.runInTerminal",
+          "args": {
+            "text": "turbo gen react-component --config=packages/ui/turbo/generators/config.ts",
+            "reveal": true,
+            "icon": "circle-filled",
+            "iconColor": "charts.green",
+            "name": "generate",
+            "reuse": "newest"
+          }
+        },
+        "duplicate app/package": {
+          "command": "commands.runInTerminal",
+          "args": {
+            "text": "turbo gen workspace --copy",
+            "reveal": true
+          }
+        }
+      }
+    },
+
+    "ionic": {
+      "nestedItems": {
+        "create ionic app": {
+          "sequence": [
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "create ionic",
+                "reuse": "newest",
+                "text": "cd apps && ionic start --no-git --type=react",
+                "reveal": true
+              },
+              "command": "commands.runInTerminal"
+            }
+          ]
+        }
+      }
+    },
+
+    "pnpm": {
+      "nestedItems": {
+        "pnpm install": {
+          "sequence": [
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "install deps",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "pnpm i"
+              },
+              "command": "commands.runInTerminal"
+            }
+          ]
+        },
+        "pnpm update all": {
+          "sequence": [
+            {
+              "args": {
+                "name": "update all",
+                "target": "newest"
+              },
+              "command": "commands.focusTerminal"
+            },
+            {
+              "args": {
+                "name": "update all",
+                "target": "newest"
+              },
+              "command": "paste"
+            },
+            {
+              "args": {
+                "text": "pnpm update --recursive "
+              },
+              "command": "workbench.action.terminal.sendSequence"
+            }
+          ]
+        }
+      }
+    },
+
+    "supabase": {
+      "nestedItems": {
+        "diff to migrate file then push WARNING!!!": {
+          "sequence": [
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "supabase",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "clear && supabase db diff --local -f backup && supabase db push"
+              },
+              "command": "commands.runInTerminal"
+            }
+          ]
+        },
+        "migrate & push": {
+          "sequence": [
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "supabase",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "clear && supabase db diff --local -f backup"
+              },
+              "command": "commands.runInTerminal"
+            }
+          ]
+        },
+        "restart supabase": {
+          "sequence": [
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "supabase",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "clear && supabase stop --project-id orderly-apps && supabase start"
+              },
+              "command": "commands.runInTerminal"
+            }
+          ]
+        },
+        "reset supabase": {
+          "sequence": [
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "supabase",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "clear && supabase db reset"
+              },
+              "command": "commands.runInTerminal"
+            }
+          ]
+        },
+
+        "supabase generate types": {
+          "sequence": [
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.yellow",
+                "name": "supabase",
+                "reveal": true,
+                "text": "supabase gen types typescript --local > apps/orderly/src/util/supabase-types.ts",
+                "reuse": "newest"
+              },
+              "command": "commands.runInTerminal"
+            }
+          ]
+        }
+      }
     }
-  ]
+  },
+  "search.exclude": {
+    "**/.vscode": false,
+    "**/apps": false,
+    "supabase": false,
+    "**/data": false,
+    "**/util": true,
+    "**/feature": false,
+    "**/shell": false,
+    "**/ui": false
+  },
+  "folder-path-color.folders": [
+    // { "path": "libs/feature/src/congregation", "color": "blue" },
+    { "path": "libs/feature/src/congregation", "color": "yellow" },
+    { "path": "libs/feature/src/user", "color": "green" },
+    { "path": "libs/feature/src/publishers", "color": "magenta" },
+    { "path": "libs/feature", "color": "cyan" },
+    { "path": "supabase", "color": "blue" }
+  ],
+  "glean.switchToTarget": true
 }

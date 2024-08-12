@@ -1,0 +1,18 @@
+{
+  "cwd": "/Users/damianamodeo/Documents/Code/framwork7",
+  "type": [
+    "web"
+  ],
+  "name": "framework-7",
+  "framework": "react",
+  "template": "tabs",
+  "cssPreProcessor": false,
+  "bundler": "vite",
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkMode": false,
+    "iconFonts": true
+  },
+  "customBuild": false
+}
