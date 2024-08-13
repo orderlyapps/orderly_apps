@@ -46,6 +46,7 @@ export function CongregationSelect({
           items={congregations || []}
           onCancel={() => setIsOpen(false)}
           onSelection={handleSelection}
+          value={personDetails.congregation_id || ""}
         />
       </IonModal>
     </>

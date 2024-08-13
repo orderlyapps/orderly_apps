@@ -22,13 +22,14 @@ interface TypeaheadProps {
   title?: string;
   onCancel?: () => void;
   onSelection: (items: string) => void;
+  value?: string
 }
 
 const MINIMUM_SEARCH_STRING_LENGTH = 3;
 
 function AppTypeahead(props: TypeaheadProps) {
   const [filteredItems, setFilteredItems] = useState<Item[]>([...props.items]);
-  const [selectedItem, setSelectedItem] = useState<string>("");
+  const [selectedItem, setSelectedItem] = useState<string>(props.value || "");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const searchbarInput = (ev: any) => {
