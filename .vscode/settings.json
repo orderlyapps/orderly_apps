@@ -418,7 +418,7 @@
             }
           ]
         },
-        "migrate & push": {
+        "diff to migrate file": {
           "sequence": [
             {
               "args": {
