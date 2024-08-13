@@ -228,7 +228,7 @@
               ]
             }
           }
-        },
+        }
       }
     },
 
@@ -403,7 +403,7 @@
 
     "supabase": {
       "nestedItems": {
-        "diff to migrate file then push WARNING!!!": {
+        "WARNING!!! diff to migrate file then push": {
           "sequence": [
             {
               "args": {
@@ -463,13 +463,12 @@
             }
           ]
         },
-
         "supabase generate types": {
           "sequence": [
             {
               "args": {
                 "icon": "circle-filled",
-                "iconColor": "charts.yellow",
+                "iconColor": "charts.green",
                 "name": "supabase",
                 "reveal": true,
                 "text": "supabase gen types typescript --local > apps/orderly/src/util/supabase-types.ts",
@@ -478,7 +477,44 @@
               "command": "commands.runInTerminal"
             }
           ]
-        }
+        },
+        "list all projects": {
+          "sequence": [
+            {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "supabase",
+                "reveal": true,
+                "text": "supabase projects list",
+                "reuse": "newest"
+              },
+              "command": "commands.runInTerminal"
+            }
+          ]
+        },
+        "list project api-keys": {
+          "args": {
+            "icon": "circle-filled",
+            "iconColor": "charts.green",
+            "name": "supabase",
+            "reveal": true,
+            "text": "supabase projects api-keys",
+            "reuse": "newest"
+          },
+          "command": "commands.runInTerminal"
+        },
+        "link staging project": {
+          "args": {
+            "icon": "circle-filled",
+            "iconColor": "charts.green",
+            "name": "supabase",
+            "reveal": true,
+            "text": "supabase link --project-ref wulfwdtrujupintyigya <<< \"\"",
+            "reuse": "newest"
+          },
+          "command": "commands.runInTerminal"
+        },
       }
     }
   },
@@ -502,6 +538,8 @@
   ],
   "glean.switchToTarget": true,
   "conventionalCommits.scopes": [
-    "people"
+    "people",
+    "ui",
+    "tools"
   ]
 }
