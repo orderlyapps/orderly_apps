@@ -58,12 +58,11 @@ function AppTypeahead(props: TypeaheadProps) {
       const normalizedQuery = searchQuery.toLowerCase();
       setFilteredItems(
         props.items.filter((item) => {
-          return item.name.toLowerCase().includes(normalizedQuery);
+          return item.name.toLowerCase().includes(normalizedQuery) || selectedItem === item.id;
         })
       );
     }
   };
-  console.log(selectedItem);
   return (
     <>
       <IonHeader>
@@ -74,7 +73,7 @@ function AppTypeahead(props: TypeaheadProps) {
           <IonTitle>{props.title}</IonTitle>
           <IonButtons slot="end">
             <IonButton
-              disabled={searchQuery === ""}
+              disabled={selectedItem === "" || (searchQuery === "" && selectedItem === "new")}
               onClick={() => props.onSelection(selectedItem)}
             >
               <strong>{selectedItem === "new" ? "Create" : "Select"}</strong>
@@ -82,7 +81,7 @@ function AppTypeahead(props: TypeaheadProps) {
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
-          <IonSearchbar onIonInput={searchbarInput}></IonSearchbar>
+          <IonSearchbar onIonInput={searchbarInput} onIonClear={() => console.log("clear")}></IonSearchbar>
         </IonToolbar>
       </IonHeader>
 
