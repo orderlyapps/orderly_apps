@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import { chevronExpandOutline } from "ionicons/icons";
 import { useStore } from "../../../data/zustand/useStore";
 import AppTypeahead from "./AppTypeahead";
-import { useCongregationsQuery } from "../queries/useCongregations";
+import {
+  useCongregationsQuery,
+  useUpsertCongregationMutation,
+} from "../queries/useCongregations";
 
 export function CongregationSelect({
   readonly = false,
@@ -14,13 +17,8 @@ export function CongregationSelect({
   const online = useStore.use.online();
   const { data: congregations } = useCongregationsQuery();
   const personDetails = useStore.use.personDetails();
-  const setStoreProperties = useStore.use.setStoreProperties();
 
   const handleSelection = (id: string) => {
-    setStoreProperties("personDetails", {
-      congregation_id: id,
-      congregation_name: congregations?.find((c) => c.id === id)?.name,
-    });
     setIsOpen(false);
   };
 

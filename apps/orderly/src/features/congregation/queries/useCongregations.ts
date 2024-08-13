@@ -39,10 +39,10 @@ async function getCongregation(id: string) {
 
 async function upsertCongregation(newData: Congregation) {
   const { data, error } = await supabase
-    .from("congregations")
-    .upsert(newData)
-    .select()
-    .single();
+  .from("congregations")
+  .upsert(newData)
+  .select()
+  .single();
 
   if (error) {
     throw new Error(error.message);
