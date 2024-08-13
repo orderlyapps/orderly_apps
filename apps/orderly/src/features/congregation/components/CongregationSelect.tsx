@@ -14,8 +14,13 @@ export function CongregationSelect({
   const online = useStore.use.online();
   const { data: congregations } = useCongregationsQuery();
   const user = useStore.use.user();
+  const setStoreProperties = useStore.use.setStoreProperties();
 
-  const handleSelection = (fruits: string) => {
+  const handleSelection = (id: string) => {
+    setStoreProperties("personDetails", {
+      congregation_id: id,
+      congregation_name: congregations?.find((c) => c.id === id)?.name,
+    });
     setIsOpen(false);
   };
 
