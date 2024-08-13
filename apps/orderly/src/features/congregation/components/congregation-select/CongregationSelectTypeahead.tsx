@@ -45,13 +45,22 @@ function CongregationSelectTypeahead(props: TypeaheadProps) {
     await showLoading();
     try {
       let congregation_id = selectedItem;
+      let congregation_name = props.items.find(
+        (item: { id: string }) => item.id === selectedItem
+      )?.name;
+
       if (selectedItem === "new") {
         congregation_id = crypto.randomUUID();
-        await upsertCongregation({ id: congregation_id, name: searchQuery });
+        congregation_name = searchQuery;
+        await upsertCongregation({
+          id: congregation_id,
+          name: congregation_name,
+        });
       }
+
       setStoreProperties("personDetails", {
         congregation_id,
-        congregation_name: searchQuery,
+        congregation_name,
       });
       await hideLoading();
       props.onSelection(selectedItem);
@@ -108,8 +117,8 @@ function CongregationSelectTypeahead(props: TypeaheadProps) {
         </IonToolbar>
         <IonToolbar>
           <IonSearchbar
+            placeholder="Search or create congregation"
             onIonInput={searchbarInput}
-            onIonClear={() => console.log("clear")}
           ></IonSearchbar>
         </IonToolbar>
       </IonHeader>

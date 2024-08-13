@@ -9,11 +9,11 @@ import { useEffect } from "react";
 export function PersonDetails(props: { readonly: boolean }) {
   const { id } = useParams<{ id: string }>();
   const { data: person } = usePublisherQuery(id);
-  const setUser = useStore.use.setStoreProperties();
+  const setPersonDetails = useStore.use.setStoreProperties();
 
   useEffect(() => {
     if (person) {
-      setUser("user", person);
+      setPersonDetails("personDetails", person);
     }
   }, []);
 
