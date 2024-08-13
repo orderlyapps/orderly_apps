@@ -540,6 +540,7 @@
   "conventionalCommits.scopes": [
     "people",
     "ui",
-    "tools"
+    "tools",
+    "congregations"
   ]
 }

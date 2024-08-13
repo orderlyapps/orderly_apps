@@ -2,8 +2,8 @@ import { IonItem, IonLabel, IonModal } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { chevronExpandOutline } from "ionicons/icons";
 import { useStore } from "../../../data/zustand/useStore";
-import { useData } from "../../../data/zustand/useData";
 import AppTypeahead from "./AppTypeahead";
+import { useCongregationsQuery } from "../queries/useCongregations";
 
 export function CongregationSelect({
   readonly = false,
@@ -12,10 +12,10 @@ export function CongregationSelect({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const online = useStore.use.online();
-  const congregations = useData.use.congregations()
+  const { data: congregations } = useCongregationsQuery();
 
   const handleSelection = (fruits: string) => {
-    setIsOpen(false)
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export function CongregationSelect({
       <IonModal isOpen={isOpen}>
         <AppTypeahead
           title="Select Congregation"
-          items={congregations}
+          items={congregations || []}
           onCancel={() => setIsOpen(false)}
           onSelection={handleSelection}
         />
