@@ -13,6 +13,7 @@ export function CongregationSelect({
   const [isOpen, setIsOpen] = useState(false);
   const online = useStore.use.online();
   const { data: congregations } = useCongregationsQuery();
+  const user = useStore.use.user();
 
   const handleSelection = (fruits: string) => {
     setIsOpen(false);
@@ -31,7 +32,7 @@ export function CongregationSelect({
         onClick={() => setIsOpen(!readonly)}
       >
         <IonLabel>Congregation:</IonLabel>
-        {/* {newPerson?.congregation} */}-
+        {user.congregation_name}
       </IonItem>
 
       <IonModal isOpen={isOpen}>

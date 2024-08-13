@@ -45,7 +45,7 @@ export function Routes({}) {
         </Suspense>
       </Route>
 
-      <Route exact path={PATHS.profile}>
+      <Route exact path={PATHS.profile + "/:id"}>
         <Suspense fallback={<LoadingSpinner />}>
           <ProfilePage />
         </Suspense>
@@ -69,7 +69,7 @@ export function Routes({}) {
         </Suspense>
       </Route>
 
-      <Route exact path={"/settings/congregation-details/:congregation_id"}>
+      <Route exact path={PATHS.congregation_details + "/:congregation_id"}>
         <Suspense fallback={<LoadingSpinner />}>
           <CongregationDetailsPage />
         </Suspense>
