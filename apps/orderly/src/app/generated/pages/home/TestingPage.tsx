@@ -5,7 +5,6 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonSpinner,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -37,7 +36,7 @@ export default function TestingPage() {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
           {/* <CongregationDetails></CongregationDetails> */}
           <IonButton onClick={handleTest} expand="full">
             Test

@@ -5,7 +5,6 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonSpinner,
   IonTitle,
   IonToolbar,
   useIonLoading,
@@ -16,6 +15,7 @@ import { useStore } from "../../../data/zustand/useStore";
 import { PersonDetails } from "../../../features/people/components/PersonDetails";
 import { useSessionQuery } from "../../auth/queries/useSession";
 import { usePublisherQuery, useUpsertPersonMutation } from "../queries/usePeople";
+import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 
 export default function ProfilePage() {
   const [readonly, setReadonly] = useState(true);
@@ -87,7 +87,7 @@ export default function ProfilePage() {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
           {session.data && <PersonDetails readonly={readonly}></PersonDetails>}
         </Suspense>
       </IonContent>

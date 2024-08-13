@@ -4,12 +4,12 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonSpinner,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
 import { Suspense } from 'react';
 import OutlineSearch from '../components/outline-search';
+import { LoadingSpinner } from '../../../ui/LoadingSpinner';
 
 export default function OutlinesListPage() {
   return (
@@ -23,7 +23,7 @@ export default function OutlinesListPage() {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
          <OutlineSearch></OutlineSearch>
         </Suspense>
       </IonContent>

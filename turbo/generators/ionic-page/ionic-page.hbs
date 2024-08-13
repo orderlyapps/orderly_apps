@@ -4,11 +4,11 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonSpinner,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
 import { Suspense } from 'react';
+import { LoadingSpinner } from "../../../../ui/LoadingSpinner";
 
 export default function {{ pascalCase name }}Page() {
   return (
@@ -22,7 +22,7 @@ export default function {{ pascalCase name }}Page() {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
          <div className='full centered'>{{ titleCase name }}</div>
         </Suspense>
       </IonContent>

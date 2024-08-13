@@ -5,7 +5,6 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonSpinner,
   IonTitle,
   IonToolbar,
   useIonLoading,
@@ -16,6 +15,7 @@ import { Suspense } from "react";
 import { useData } from "../../../data/zustand/useData";
 import { PATHS } from "../../../app/generated/util/paths";
 import { CongregationSelect } from "../components/CongregationSelect";
+import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 
 export default function CreateCongregationPage() {
   const router = useIonRouter();
@@ -56,7 +56,7 @@ export default function CreateCongregationPage() {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
         <CongregationSelect></CongregationSelect>
         </Suspense>
       </IonContent>

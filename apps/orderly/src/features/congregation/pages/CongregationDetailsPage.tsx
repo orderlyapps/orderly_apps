@@ -5,7 +5,6 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonSpinner,
   IonTitle,
   IonToolbar,
   useIonLoading,
@@ -21,6 +20,7 @@ import {
 } from "../queries/useCongregations";
 import { usePublisherQuery } from "../../people/queries/usePeople";
 import { RouteComponentProps, useParams } from "react-router-dom";
+import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 
 interface UserDetailPageProps
   extends RouteComponentProps<{
@@ -103,8 +103,8 @@ export default function CongregationDetailsPage({
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Suspense fallback={<IonSpinner />}>
-          <CongregationDetails readonly={readonly}></CongregationDetails>{" "}
+        <Suspense fallback={<LoadingSpinner />}>
+          <CongregationDetails readonly={readonly}></CongregationDetails>
         </Suspense>
       </IonContent>
     </IonPage>

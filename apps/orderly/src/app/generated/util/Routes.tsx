@@ -1,7 +1,7 @@
-import { IonSpinner } from "@ionic/react";
 import { Route, Redirect } from "react-router";
 import HomePage from "../pages/home/HomePage";
 import { PATHS } from "./paths";
+import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import { lazy, Suspense } from "react";
 const CongregationDetailsPage = lazy(
   () => import("../../../features/congregation/pages/CongregationDetailsPage")
@@ -30,7 +30,7 @@ export function Routes({}) {
       </Route>
 
       <Route exact path="/settings">
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
           <SettingsPage />
         </Suspense>
       </Route>
@@ -40,37 +40,37 @@ export function Routes({}) {
       </Route>
 
       <Route exact path={PATHS.outlines_list}>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
           <OutlinesListPage />
         </Suspense>
       </Route>
 
       <Route exact path={PATHS.profile}>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
           <ProfilePage />
         </Suspense>
       </Route>
 
       <Route exact path={PATHS.publishers_list}>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
           <PublishersListPage />
         </Suspense>
       </Route>
 
       <Route exact path={PATHS.testing}>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
           <TestingPage />
         </Suspense>
       </Route>
 
       <Route exact path={PATHS.create_congregation}>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
           <CreateCongregationPage />
         </Suspense>
       </Route>
 
       <Route exact path={"/settings/congregation-details/:congregation_id"}>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
           <CongregationDetailsPage />
         </Suspense>
       </Route>

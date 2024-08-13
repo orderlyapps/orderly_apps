@@ -42,7 +42,7 @@ export const ionicPage = (plop: PlopTypes.NodePlopAPI) => {
           '\nconst {{pascalCase name}}Page = lazy(() => import("../pages/{{kebabCase tab}}/{{pascalCase name}}Page"));' +
           "$2" +
           "\n\n      <Route exact path={ PATHS.{{snakeCase name}} }>\n" +
-          "        <Suspense fallback={<IonSpinner />}>\n" +
+          "        <Suspense fallback={<LoadingSpinner />}>\n" +
           "          <{{pascalCase name}}Page />\n" +
           "        </Suspense>\n" +
           "      </Route>",

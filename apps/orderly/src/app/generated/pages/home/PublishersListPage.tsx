@@ -4,12 +4,12 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonSpinner,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import { Suspense } from "react";
 import { PeopleList } from "../../../../features/people/components/PeopleList";
+import { LoadingSpinner } from "../../../../ui/LoadingSpinner";
 
 export default function PublishersList() {
   return (
@@ -23,7 +23,7 @@ export default function PublishersList() {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <Suspense fallback={<IonSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
           <PeopleList></PeopleList>
         </Suspense>
       </IonContent>
