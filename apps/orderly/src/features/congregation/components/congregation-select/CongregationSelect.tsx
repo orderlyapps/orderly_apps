@@ -1,12 +1,11 @@
 import { IonItem, IonLabel, IonModal } from "@ionic/react";
-import { useEffect, useState } from "react";
 import { chevronExpandOutline } from "ionicons/icons";
-import { useStore } from "../../../data/zustand/useStore";
-import AppTypeahead from "./AppTypeahead";
+import { useEffect, useState } from "react";
+import { useStore } from "../../../../data/zustand/useStore";
 import {
-  useCongregationsQuery,
-  useUpsertCongregationMutation,
-} from "../queries/useCongregations";
+  useCongregationsQuery
+} from "../../queries/useCongregations";
+import CongregationSelectTypeahead from "./CongregationSelectTypeahead";
 
 export function CongregationSelect({
   readonly = false,
@@ -39,7 +38,7 @@ export function CongregationSelect({
       </IonItem>
 
       <IonModal isOpen={isOpen}>
-        <AppTypeahead
+        <CongregationSelectTypeahead
           title="Select Congregation"
           items={congregations || []}
           onCancel={() => setIsOpen(false)}

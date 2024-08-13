@@ -1,6 +1,6 @@
 import { IonList } from "@ionic/react";
 import { NameDetails } from "./NameDetails";
-import { CongregationSelect } from "../../congregation/components/CongregationSelect";
+import { CongregationSelect } from "../../congregation/components/congregation-select/CongregationSelect";
 import { useParams } from "react-router";
 import { usePublisherQuery } from "../queries/usePeople";
 import { useStore } from "../../../data/zustand/useStore";

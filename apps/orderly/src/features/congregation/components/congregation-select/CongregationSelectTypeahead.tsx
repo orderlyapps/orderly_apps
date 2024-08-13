@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   IonButton,
   IonButtons,
@@ -7,14 +6,15 @@ import {
   IonHeader,
   IonItem,
   IonList,
-  IonTitle,
   IonSearchbar,
+  IonTitle,
   IonToolbar,
-  useIonToast,
   useIonLoading,
+  useIonToast,
 } from "@ionic/react";
-import { useStore } from "../../../data/zustand/useStore";
-import { useUpsertCongregationMutation } from "../queries/useCongregations";
+import { useState } from "react";
+import { useStore } from "../../../../data/zustand/useStore";
+import { useUpsertCongregationMutation } from "../../queries/useCongregations";
 
 export interface Item {
   name: string;
@@ -31,7 +31,7 @@ interface TypeaheadProps {
 
 const MINIMUM_SEARCH_STRING_LENGTH = 3;
 
-function AppTypeahead(props: TypeaheadProps) {
+function CongregationSelectTypeahead(props: TypeaheadProps) {
   const [filteredItems, setFilteredItems] = useState<Item[]>([...props.items]);
   const [selectedItem, setSelectedItem] = useState<string>(props.value || "");
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -70,25 +70,10 @@ function AppTypeahead(props: TypeaheadProps) {
     filterList(ev.target.value);
   };
 
-  /**
-   * Update the rendered view with
-   * the provided search query. If no
-   * query is provided, all data
-   * will be rendered.
-   */
   const filterList = (searchQuery: string | null | undefined) => {
-    /**
-     * If no search query is defined,
-     * return all options.
-     */
     if (searchQuery === undefined || searchQuery === null) {
       setFilteredItems([...props.items]);
     } else {
-      /**
-       * Otherwise, normalize the search
-       * query and check to see which items
-       * contain the search query as a substring.
-       */
       const normalizedQuery = searchQuery.toLowerCase();
       setFilteredItems(
         props.items.filter((item) => {
@@ -100,6 +85,7 @@ function AppTypeahead(props: TypeaheadProps) {
       );
     }
   };
+
   return (
     <>
       <IonHeader>
@@ -168,4 +154,4 @@ function AppTypeahead(props: TypeaheadProps) {
     </>
   );
 }
-export default AppTypeahead;
+export default CongregationSelectTypeahead;

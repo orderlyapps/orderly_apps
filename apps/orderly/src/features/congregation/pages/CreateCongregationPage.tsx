@@ -14,7 +14,7 @@ import {
 import { Suspense } from "react";
 import { useData } from "../../../data/zustand/useData";
 import { PATHS } from "../../../app/generated/util/paths";
-import { CongregationSelect } from "../components/CongregationSelect";
+import { CongregationSelect } from "../components/congregation-select/CongregationSelect";
 import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 
 export default function CreateCongregationPage() {
