@@ -418,7 +418,7 @@
             }
           ]
         },
-        "migrate & push": {
+        "diff to migrate file": {
           "sequence": [
             {
               "args": {
@@ -540,6 +540,7 @@
   "conventionalCommits.scopes": [
     "people",
     "ui",
-    "tools"
+    "tools",
+    "congregations"
   ]
 }
