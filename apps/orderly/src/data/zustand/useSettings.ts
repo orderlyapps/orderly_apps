@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "./createSelectors";
-import { Session } from "@supabase/auth-js";
+import { Session } from "@supabase/supabase-js";
 
 export type SettingsState = typeof initialState;
 
