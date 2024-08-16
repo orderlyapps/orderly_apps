@@ -50,7 +50,10 @@ const useStoreBase = create<StoreState & StoreActions>()(
 
           return {
             ...state,
-            [property]: { ...existingValues, ...valueIsObject },
+            [property]: {
+              ...(typeof existingValues === "object" ? existingValues : {}),
+              ...valueIsObject,
+            },
           };
         });
       },
