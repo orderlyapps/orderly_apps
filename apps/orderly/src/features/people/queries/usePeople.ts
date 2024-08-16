@@ -22,32 +22,38 @@ export type Publisher = Database["public"]["Views"]["publishers"]["Row"];
 
 async function getPeople() {
   const { data, error } = await supabase.from("people").select();
-  if (data) {
-    return data;
+
+  if (error) {
+    throw new Error(error.message);
   }
-  throw error;
+  return data;
 }
+
 async function getPublishers() {
   const { data, error } = await supabase.from("publishers").select();
-  if (data) {
-    return data;
+
+  if (error) {
+    throw new Error(error.message);
   }
-  throw error;
+  return data;
 }
+
 async function getPublisher(id: string) {
   const { data, error } = await supabase
     .from("publishers")
     .select()
     .eq("id", id)
     .single();
-  if (data) {
-    return data;
+
+  if (error) {
+    throw new Error(error.message);
   }
-  throw error;
+  return data;
 }
+
 async function upsertPerson(newData: Publisher) {
   function personify(publisher: Publisher): PersonAny {
-    const { is_admin, ...person } = publisher;
+    const { is_admin, congregation_name, ...person } = publisher;
     return person;
   }
   const { data, error } = await supabase
@@ -55,10 +61,11 @@ async function upsertPerson(newData: Publisher) {
     .upsert(personify(newData))
     .select()
     .single();
-  if (data) {
-    return data;
+
+  if (error) {
+    throw new Error(error.message);
   }
-  throw error;
+  return data;
 }
 
 // HOOKS

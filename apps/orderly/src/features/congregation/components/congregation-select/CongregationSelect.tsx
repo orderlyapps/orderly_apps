@@ -1,9 +1,11 @@
 import { IonItem, IonLabel, IonModal } from "@ionic/react";
-import { useEffect, useState } from "react";
 import { chevronExpandOutline } from "ionicons/icons";
-import { useStore } from "../../../data/zustand/useStore";
-import { useData } from "../../../data/zustand/useData";
-import AppTypeahead from "./AppTypeahead";
+import { useEffect, useState } from "react";
+import { useStore } from "../../../../data/zustand/useStore";
+import {
+  useCongregationsQuery
+} from "../../queries/useCongregations";
+import CongregationSelectTypeahead from "./CongregationSelectTypeahead";
 
 export function CongregationSelect({
   readonly = false,
@@ -12,10 +14,11 @@ export function CongregationSelect({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const online = useStore.use.online();
-  const congregations = useData.use.congregations()
+  const { data: congregations } = useCongregationsQuery();
+  const personDetails = useStore.use.personDetails();
 
-  const handleSelection = (fruits: string) => {
-    setIsOpen(false)
+  const handleSelection = (id: string) => {
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -31,15 +34,16 @@ export function CongregationSelect({
         onClick={() => setIsOpen(!readonly)}
       >
         <IonLabel>Congregation:</IonLabel>
-        {/* {newPerson?.congregation} */}-
+        {personDetails.congregation_name}
       </IonItem>
 
       <IonModal isOpen={isOpen}>
-        <AppTypeahead
+        <CongregationSelectTypeahead
           title="Select Congregation"
-          items={congregations}
+          items={congregations || []}
           onCancel={() => setIsOpen(false)}
           onSelection={handleSelection}
+          value={personDetails.congregation_id || ""}
         />
       </IonModal>
     </>

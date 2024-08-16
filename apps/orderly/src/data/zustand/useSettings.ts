@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "./createSelectors";
-import { Session } from "@supabase/supabase-js";
+// import { Session } from "@supabase/auth-js";
 
 export type SettingsState = typeof initialState;
 
 const initialState = {
-  session: null as Session | null,
+  // session: null as Session | null,
   online: true as boolean,
   theme: "auto" as "dark" | "light" | "auto",
 } as const;

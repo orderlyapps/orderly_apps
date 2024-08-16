@@ -154,6 +154,7 @@ export type Database = {
         Row: {
           avatar_url: string | null
           congregation_id: string | null
+          congregation_name: string | null
           created_at: string | null
           display_name: string | null
           first_name: string | null

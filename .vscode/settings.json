@@ -5,11 +5,11 @@
     // "**/apps/templates": true,
 
     // "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/Thumbs.db": true,
+    // "**/.svn": true,
+    // "**/.hg": true,
+    // "**/CVS": true,
+    // "**/.DS_Store": true,
+    // "**/Thumbs.db": true,
 
     // FOLDERS
     "**/.turbo": true,
@@ -542,6 +542,7 @@
     "ui",
     "tools",
     "data",
-    "congregations",
+    "pdf",
+    "congregations"
   ]
 }

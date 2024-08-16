@@ -5,7 +5,8 @@ import { supabase } from "../../../data/supabase/supabase-client";
 const congregationsKeys = {
   all: ["congregations"] as const,
   lists: () => [...congregationsKeys.all, "list"] as const,
-  list: (filters: string) => [...congregationsKeys.lists(), { filters }] as const,
+  list: (filters: string) =>
+    [...congregationsKeys.lists(), { filters }] as const,
   details: () => [...congregationsKeys.all, "detail"] as const,
   detail: (id?: string | null) => [...congregationsKeys.details(), id] as const,
 };
@@ -16,10 +17,11 @@ type Congregation = Database["public"]["Tables"]["congregations"]["Insert"];
 
 async function getCongregations() {
   const { data, error } = await supabase.from("congregations").select();
-  if (data) {
-    return data;
+
+  if (error) {
+    throw new Error(error.message);
   }
-  throw error;
+  return data;
 }
 
 async function getCongregation(id: string) {
@@ -28,10 +30,11 @@ async function getCongregation(id: string) {
     .select()
     .eq("id", id)
     .single();
-  if (data) {
-    return data;
+
+  if (error) {
+    throw new Error(error.message);
   }
-  throw error;
+  return data;
 }
 
 async function upsertCongregation(newData: Congregation) {
@@ -40,11 +43,11 @@ async function upsertCongregation(newData: Congregation) {
   .upsert(newData)
   .select()
   .single();
-  console.log("error:", error)
-  if (data) {
-    return data;
+
+  if (error) {
+    throw new Error(error.message);
   }
-  throw error;
+  return data;
 }
 
 // HOOKS
@@ -66,10 +69,13 @@ export const useUpsertCongregationMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (congregation: Congregation) => upsertCongregation(congregation),
+    mutationFn: (congregation: Congregation) =>
+      upsertCongregation(congregation),
     onSuccess: (congregations) => {
-      queryClient.setQueryData(congregationsKeys.all, (oldData: Congregation[]) =>
-        oldData ? [...oldData, congregations] : [congregations]
+      queryClient.setQueryData(
+        congregationsKeys.all,
+        (oldData: Congregation[]) =>
+          oldData ? [...oldData, congregations] : [congregations]
       );
     },
   });

@@ -21,13 +21,13 @@ type StoreActions = {
   resetStore: () => void;
   setStoreProperties: <K extends keyof StoreState>(
     property: K,
-    value: StoreState[K]
+    value: Partial<StoreState[K]>
   ) => void;
 };
 
 const useStoreBase = create<StoreState & StoreActions>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       ...initialState,
 
       resetStore: () =>
@@ -39,9 +39,9 @@ const useStoreBase = create<StoreState & StoreActions>()(
         set((state) => {
           const existingValues =
             typeof state[property] === "object" ? state[property] : null;
-          const valueObject = typeof value === "object" ? { ...value } : null;
+          const valueIsObject = typeof value === "object" ? { ...value } : null;
 
-          if (!valueObject) {
+          if (!valueIsObject) {
             return {
               ...state,
               [property]: value,
@@ -50,7 +50,10 @@ const useStoreBase = create<StoreState & StoreActions>()(
 
           return {
             ...state,
-            [property]: { ...existingValues, ...valueObject },
+            [property]: {
+              ...(typeof existingValues === "object" ? existingValues : {}),
+              ...valueIsObject,
+            },
           };
         });
       },
