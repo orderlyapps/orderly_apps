@@ -19,6 +19,7 @@
     "@capacitor/status-bar": "6.0.0",
     "@ionic/react": "^8.0.0",
     "@ionic/react-router": "^8.0.0",
+    "@react-pdf/renderer": "^3.4.4",
     "@supabase/supabase-js": "^2.44.4",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-query-devtools": "^5.51.21",
