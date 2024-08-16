@@ -418,7 +418,7 @@
             }
           ]
         },
-        "migrate & push": {
+        "diff to migrate file": {
           "sequence": [
             {
               "args": {
@@ -542,5 +542,6 @@
     "ui",
     "tools",
     "data"
+    "congregations"
   ]
 }

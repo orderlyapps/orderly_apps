@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 
 const Tab1: React.FC = () => {
   return (
@@ -14,6 +14,7 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Tab 1</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <IonButton routerLink='/tab1/home_2'>To Home_2</IonButton>
       </IonContent>
     </IonPage>
   );

@@ -45,6 +45,7 @@ import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import Home_2 from "./pages/home/home_2";
 
 setupIonicReact();
 
@@ -55,6 +56,9 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route exact path="/tab1">
             <Tab1 />
+          </Route>
+          <Route exact path="/tab1/home_2">
+            <Home_2 />
           </Route>
           <Route exact path="/settings">
             <Suspense fallback="loading...">
