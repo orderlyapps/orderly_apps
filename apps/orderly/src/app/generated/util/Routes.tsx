@@ -1,7 +1,8 @@
-import { Route, Redirect } from "react-router";
+import { IonRouterOutlet } from "@ionic/react";
+import { Redirect, Route } from "react-router";
+import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import HomePage from "../pages/home/HomePage";
 import { PATHS } from "./paths";
-import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import { lazy, Suspense } from "react";
 const CongregationDetailsPage = lazy(
   () => import("../../../features/congregation/pages/CongregationDetailsPage")
@@ -24,7 +25,7 @@ const SettingsPage = lazy(
 );
 export function Routes({}) {
   return (
-    <>
+    <IonRouterOutlet>
       <Route exact path="/home">
         <HomePage />
       </Route>
@@ -74,6 +75,6 @@ export function Routes({}) {
           <CongregationDetailsPage />
         </Suspense>
       </Route>
-    </>
+    </IonRouterOutlet>
   );
 }
