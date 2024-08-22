@@ -99,8 +99,8 @@
                   "description": "What do you want to do?",
                   "options": [
                     {
-                      "label": "orderly (experimental)",
-                      "value": "turbo build --filter orderly && cd apps/orderly && npx wrangler pages deploy dist --project-name=orderly --branch=experimental"
+                      "label": "orderly (alpha)",
+                      "value": "turbo build --filter orderly && cd apps/orderly && npx wrangler pages deploy dist --project-name=orderly --branch=alpha"
                     },
                     {
                       "label": "ionic-starter (experimental)",
