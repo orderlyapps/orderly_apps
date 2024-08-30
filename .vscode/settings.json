@@ -1,19 +1,19 @@
 {
   "files.exclude": {
-    // "**/dist": true,
-    // "**/dev-dist": true,
+    "**/dist": true,
+    "**/dev-dist": true,
     // "**/apps/templates": true,
 
-    // "**/.git": true,
-    // "**/.svn": true,
-    // "**/.hg": true,
-    // "**/CVS": true,
-    // "**/.DS_Store": true,
-    // "**/Thumbs.db": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
 
     // FOLDERS
     "**/.turbo": true,
-    // "**/node_modules": true,
+    "**/node_modules": true,
     "**/.wrangler": true
     // "**/packages": true
   },
