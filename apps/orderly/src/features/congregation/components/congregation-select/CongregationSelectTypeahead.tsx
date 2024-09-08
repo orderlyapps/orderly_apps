@@ -29,12 +29,21 @@ interface TypeaheadProps {
   value?: string;
 }
 
-const MINIMUM_SEARCH_STRING_LENGTH = 3;
+const MINIMUM_CONGREGATION_NAME_LENGTH = 3;
+
+const shouldShowCreateCongregation = (
+  admin_count: number | null | undefined,
+  search_query: string
+) =>
+  admin_count === null ||
+  admin_count === undefined ||
+  (admin_count < 3 && search_query.length < MINIMUM_CONGREGATION_NAME_LENGTH);
 
 function CongregationSelectTypeahead(props: TypeaheadProps) {
   const [filteredItems, setFilteredItems] = useState<Item[]>([...props.items]);
   const [selectedItem, setSelectedItem] = useState<string>(props.value || "");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const { admin_count } = useStore.use.personDetails();
   const setStoreProperties = useStore.use.setStoreProperties();
   const { mutateAsync: upsertCongregation } = useUpsertCongregationMutation();
 
@@ -117,14 +126,14 @@ function CongregationSelectTypeahead(props: TypeaheadProps) {
         </IonToolbar>
         <IonToolbar>
           <IonSearchbar
-            placeholder="Search or create congregation"
+            placeholder={`Search ${shouldShowCreateCongregation(admin_count, searchQuery) ? "for or create congregation" : "congregations"}`}
             onIonInput={searchbarInput}
           ></IonSearchbar>
         </IonToolbar>
       </IonHeader>
 
       <IonContent color="light" class="ion-padding">
-        {searchQuery.length >= MINIMUM_SEARCH_STRING_LENGTH && (
+        {shouldShowCreateCongregation(admin_count, searchQuery) && (
           <IonList inset>
             <IonItem>
               <IonCheckbox

@@ -1,46 +1,25 @@
 {
-  "-New Folder": {
-    "prefix": "commands",
-    "body": [
-      "\"${1:New_Folder}\": {",
-      "\"nestedItems\": {",
-      "\"command\": {",
-      "\"sequence\": [",
-      "{",
-      "\"command\": ",
-      "\"$2\"",
-      ",",
-      "\"args\": {",
-      "},",
-      "",
-      "},",
-      "],",
-      "},",
-      "},",
-      "},",
-    ],
+  "~New Commands Folder": {
+    "prefix": "~commands",
+    "body": ["\"~${1:New_Folder}\": {", "\"nestedItems\": {$0}},"],
     "description": "",
   },
-  "-New Command": {
-    "prefix": "commands",
+  "~New Command": {
+    "prefix": "~commands",
     "body": [
-      "\"${1:New_Command}\": {",
-      "\"sequence\": [",
-      "{",
+      "\"~${1:New_Command}\": {",
       "\"command\": \"$2\",",
       "\"args\": {}",
-      "}",
-      "]",
       "},",
     ],
     "description": "",
   },
-  "-New Teminal Command": {
-    "prefix": "commands",
+  "~New Teminal Command": {
+    "prefix": "~commands",
     "body": [
-      "{",
+      "\"~${1:New_Command}\": {",
       "\"args\": {",
-      "\"icon\": \"circle-large-filled\",",
+      "\"icon\": \"circle-filled\",",
       "\"iconColor\": \"charts.green\",",
       "\"name\": \"$2\",",
       "\"reuse\": \"newest\",",
@@ -48,14 +27,14 @@
       "\"text\": \"$1\"",
       "},",
       "\"command\": \"commands.runInTerminal\"",
-      "}",
+      "},",
     ],
     "description": "",
   },
-  "-Wrap Command in Folder": {
-    "prefix": "commands",
+  "~Wrap Commands in Folder": {
+    "prefix": "~commands",
     "body": [
-      "\"${1:New_Folder}\": {",
+      "\"~${1:New_Folder}\": {",
       "\"nestedItems\": {",
       "${TM_SELECTED_TEXT}",
       "}",

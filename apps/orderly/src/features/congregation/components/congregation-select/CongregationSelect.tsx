@@ -16,6 +16,7 @@ export function CongregationSelect({
   const online = useStore.use.online();
   const { data: congregations } = useCongregationsQuery();
   const personDetails = useStore.use.personDetails();
+  console.log("personDetails:", personDetails)
 
   const handleSelection = (id: string) => {
     setIsOpen(false);
