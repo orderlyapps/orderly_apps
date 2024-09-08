@@ -90,6 +90,21 @@
               "command": "commands.runInTerminal"
             }
           }
+        },
+        "~cloudflare": {
+          "nestedItems": {
+            "~deploy orderly alpha": {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.yellow",
+                "name": "deploy",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "turbo build --filter orderly && cd apps/orderly && npx wrangler pages deploy dist --project-name=orderly --branch=alpha"
+              },
+              "command": "commands.runInTerminal"
+            }
+          }
         }
       }
     }
