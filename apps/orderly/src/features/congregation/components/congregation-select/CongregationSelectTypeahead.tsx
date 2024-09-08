@@ -35,9 +35,8 @@ const shouldShowCreateCongregation = (
   admin_count: number | null | undefined,
   search_query: string
 ) =>
-  admin_count === null ||
-  admin_count === undefined ||
-  (admin_count < 3 && search_query.length < MINIMUM_CONGREGATION_NAME_LENGTH);
+  (admin_count === null || admin_count === undefined || admin_count < 3) &&
+  search_query.length < MINIMUM_CONGREGATION_NAME_LENGTH;
 
 function CongregationSelectTypeahead(props: TypeaheadProps) {
   const [filteredItems, setFilteredItems] = useState<Item[]>([...props.items]);
