@@ -157,13 +157,14 @@
         "~cloudflare": {
           "nestedItems": {
             "~deploy orderly alpha": {
+              "delay": 50,
               "args": {
                 "icon": "circle-filled",
                 "iconColor": "charts.yellow",
                 "name": "deploy",
                 "reuse": "newest",
                 "reveal": true,
-                "text": "turbo build_alpha --filter orderly && cd apps/orderly && npx wrangler pages deploy dist --project-name=orderly --branch=alpha"
+                "text": "turbo build_alpha --filter orderly && npx wrangler pages deploy apps/orderly/dist --project-name=orderly --branch=alpha"
               },
               "command": "commands.runInTerminal"
             }
