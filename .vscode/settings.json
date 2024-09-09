@@ -22,9 +22,13 @@
       "nestedItems": {
         "~terminal": {
           "nestedItems": {
-            "~focus terminal dev": {
+            "~focus terminal deploy": {
               "command": "commands.focusTerminal",
               "args": "dev"
+            },
+            "~focus terminal dev": {
+              "command": "commands.focusTerminal",
+              "args": "deploy"
             },
             "~kill terminal dev": {
               "sequence": [
@@ -36,6 +40,21 @@
                   "command": "workbench.action.terminal.kill"
                 }
               ]
+            },
+            "~kill terminal deploy": {
+              "sequence": [
+                {
+                  "command": "commands.run",
+                  "args": ["~focus terminal dev"]
+                },
+                {
+                  "command": "workbench.action.terminal.kill"
+                }
+              ]
+            },
+            "~clear terminal": {
+              "command": "commands.runInTerminal",
+              "args": "clear"
             }
           }
         },
@@ -48,7 +67,7 @@
                 "name": "supabase",
                 "reuse": "newest",
                 "reveal": true,
-                "text": "clear && supabase db diff --local -f backup"
+                "text": "supabase db diff --local -f backup"
               },
               "command": "commands.runInTerminal"
             },
@@ -59,7 +78,7 @@
                 "name": "supabase",
                 "reuse": "newest",
                 "reveal": true,
-                "text": "clear && supabase gen types typescript --local > apps/orderly/src/util/supabase-types.ts"
+                "text": "supabase gen types typescript --local > apps/orderly/src/util/supabase-types.ts"
               },
               "command": "commands.runInTerminal"
             },
@@ -70,7 +89,51 @@
                 "name": "supabase",
                 "reuse": "newest",
                 "reveal": true,
-                "text": "clear && supabase stop --project-id orderly-apps && supabase start"
+                "text": "supabase stop --project-id orderly-apps && supabase start"
+              },
+              "command": "commands.runInTerminal"
+            },
+            "~push migration": {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "supabase db push"
+              },
+              "command": "commands.runInTerminal"
+            },
+            "~link staging project": {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "supabase",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "supabase link --debug"
+              },
+              "command": "commands.runInTerminal"
+            },
+            "~login supabase": {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "supabase",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "supabase login"
+              },
+              "command": "commands.runInTerminal"
+            },
+            "~supabase upgrade": {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "supabase",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "brew upgrade supabase"
               },
               "command": "commands.runInTerminal"
             }
@@ -100,7 +163,7 @@
                 "name": "deploy",
                 "reuse": "newest",
                 "reveal": true,
-                "text": "turbo build --filter orderly && cd apps/orderly && npx wrangler pages deploy dist --project-name=orderly --branch=alpha"
+                "text": "turbo build_alpha --filter orderly && cd apps/orderly && npx wrangler pages deploy dist --project-name=orderly --branch=alpha"
               },
               "command": "commands.runInTerminal"
             }

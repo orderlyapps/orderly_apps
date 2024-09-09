@@ -63,7 +63,7 @@ export default function ProfilePage() {
     if (person) {
       setStoreProperties("personDetails", person);
     }
-  }, []);
+  }, [person]);
 
   return (
     <IonPage>

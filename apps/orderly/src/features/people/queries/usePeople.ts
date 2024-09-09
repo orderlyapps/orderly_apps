@@ -53,7 +53,7 @@ async function getPublisher(id: string) {
 
 async function upsertPerson(newData: Publisher) {
   function personify(publisher: Publisher): PersonAny {
-    const { is_admin, congregation_name, ...person } = publisher;
+    const { is_admin, congregation_name, admin_count, ...person } = publisher;
     return person;
   }
   const { data, error } = await supabase
@@ -94,9 +94,9 @@ export const useUpsertPersonMutation = () => {
 
   return useMutation({
     mutationFn: (person: Publisher) => upsertPerson(person),
-    onSuccess: (people) => {
+    onSuccess: (person) => {
       queryClient.setQueryData(peopleKeys.all, (oldData: Person[]) =>
-        oldData ? [...oldData, people] : [people]
+        oldData ? [...oldData, person] : [person]
       );
     },
   });
