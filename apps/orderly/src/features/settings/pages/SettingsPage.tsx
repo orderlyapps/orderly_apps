@@ -34,12 +34,6 @@ const SettingsPage: React.FC = () => {
         <IonList inset>
           <BuildTime></BuildTime>
           <ThemeSelect></ThemeSelect>
-          <CreateCongregationPageLink.Item detail>
-            <strong>Create Congregation:</strong>
-          </CreateCongregationPageLink.Item>
-          <CongregationDetailsPageLink.Item
-            param={"/settings/congregation-details/" + publisher.data?.congregation_id}
-          ></CongregationDetailsPageLink.Item>
         </IonList>
       </IonContent>
     </IonPage>
