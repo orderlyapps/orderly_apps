@@ -8,15 +8,9 @@ import {
 } from "@ionic/react";
 import { SignIn } from "../../../features/auth/components/SignIn";
 import { ThemeSelect } from "../components/ThemeSelect";
-import { CreateCongregationPageLink } from "../../../app/generated/page-links/settings/CreateCongregationPageLinks";
 import { BuildTime } from "../components/BuildTime";
-import { CongregationDetailsPageLink } from "../../../app/generated/page-links/settings/CongregationDetailsPageLinks";
-import { usePublisherQuery } from "../../people/queries/usePeople";
-import { useSessionQuery } from "../../auth/queries/useSession";
 
 const SettingsPage: React.FC = () => {
-  const session = useSessionQuery();
-  const publisher = usePublisherQuery(session.data?.user.id);
   return (
     <IonPage>
       <IonHeader>

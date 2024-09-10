@@ -7,6 +7,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { OutlinesListPageLink } from "../../page-links/home/OutlinesListPageLinks";
+import { PublishersListPageLink } from "../../page-links/home/PublishersListLinks";
 
 const Home: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const Home: React.FC = () => {
         </IonHeader>
         <IonList>
           <OutlinesListPageLink.Item></OutlinesListPageLink.Item>
+          <PublishersListPageLink.Item></PublishersListPageLink.Item>
         </IonList>
       </IonContent>
     </IonPage>

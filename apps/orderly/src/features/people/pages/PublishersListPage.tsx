@@ -8,8 +8,8 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { Suspense } from "react";
-import { PeopleList } from "../../../../features/people/components/PeopleList";
-import { LoadingSpinner } from "../../../../ui/LoadingSpinner";
+import { PeopleList } from "../components/PeopleList";
+import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 
 export default function PublishersList() {
   return (

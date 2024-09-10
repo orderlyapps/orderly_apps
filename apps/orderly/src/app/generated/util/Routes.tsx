@@ -15,7 +15,7 @@ const OutlinesListPage = lazy(
   () => import("../../../features/public-talks/pages/OutlinesListPage")
 );
 const PublishersListPage = lazy(
-  () => import("../../../features/people/pages/ProfilePage")
+  () => import("../../../features/people/pages/PublishersListPage")
 );
 const ProfilePage = lazy(
   () => import("../../../features/people/pages/ProfilePage")

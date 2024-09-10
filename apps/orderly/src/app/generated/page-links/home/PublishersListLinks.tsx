@@ -2,33 +2,33 @@ import { IonButton, IonCard, IonFabButton, IonItem } from "@ionic/react";
 import { PATHS } from "../../util/paths";
 import { ComponentProps } from "react";
 
-function Button( props: ComponentProps<typeof IonButton>) {
+function Button(props: ComponentProps<typeof IonButton>) {
   return (
-    <IonButton routerLink={ PATHS.publishers_list } {...props}>
+    <IonButton routerLink={PATHS.publishers_list} {...props}>
       {props.children || "Publishers List"}
     </IonButton>
   );
 }
 
-function Item( props: ComponentProps<typeof IonItem>) {
+function Item(props: ComponentProps<typeof IonItem>) {
   return (
-    <IonItem routerLink={ PATHS.publishers_list } {...props}>
+    <IonItem routerLink={PATHS.publishers_list} {...props}>
       {props.children || "Publishers List"}
     </IonItem>
   );
 }
 
-function Card( props: ComponentProps<typeof IonCard>) {
+function Card(props: ComponentProps<typeof IonCard>) {
   return (
-    <IonCard routerLink={ PATHS.publishers_list } {...props}>
+    <IonCard routerLink={PATHS.publishers_list} {...props}>
       {props.children || "Publishers List"}
     </IonCard>
   );
 }
 
-function FabButton( props: ComponentProps<typeof IonFabButton>) {
+function FabButton(props: ComponentProps<typeof IonFabButton>) {
   return (
-    <IonFabButton routerLink={ PATHS.publishers_list } {...props}>
+    <IonFabButton routerLink={PATHS.publishers_list} {...props}>
       {props.children || "Publishers List"}
     </IonFabButton>
   );
