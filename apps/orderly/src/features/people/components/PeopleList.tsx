@@ -1,17 +1,18 @@
 import { IonItem, IonList } from "@ionic/react";
-import { useData } from "../../../data/zustand/useData";
-import { useEffect } from "react";
+import { useCongregationPublishersQuery } from "../queries/useCongregationPublishersQuery";
+import { usePublisherQuery } from "../queries/usePublisherQuery";
+import { useSessionQuery } from "../../auth/queries/useSession";
 
 export function PeopleList() {
-  const people = useData.use.people();
-  const initTableData = useData.use.initTableData();
 
-  useEffect(() => {
-    initTableData("people");
-  }, []);
+  const { data } = useSessionQuery();
+  const { data: publisher } = usePublisherQuery(data?.user.id);
+  const { data: congregation } = useCongregationPublishersQuery(
+    publisher?.congregation_id
+  );
 
-  if (!people) return <div>No People Data</div>;
-  return people.map((p) => {
+  if (!congregation) return <div>No People Data</div>;
+  return congregation.map((p) => {
     return (
       <IonList key={p.id}>
         <IonItem>{p.full_name}</IonItem>
