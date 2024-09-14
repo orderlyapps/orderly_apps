@@ -32,13 +32,12 @@ interface TypeaheadProps {
 const MINIMUM_CONGREGATION_NAME_LENGTH = 3;
 
 const shouldShowCreateCongregation = (
-  admin_count: number | null | undefined,
+  admin_count: number | null,
   search_query: string
 ) => {
   if (search_query.length <= MINIMUM_CONGREGATION_NAME_LENGTH) return false;
 
-  if (admin_count !== null || admin_count !== undefined || admin_count >= 3)
-    return false;
+  if (admin_count !== null && admin_count >= 3) return false;
 
   return true;
 };
