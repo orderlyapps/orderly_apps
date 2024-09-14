@@ -15,10 +15,8 @@ import { useStore } from "../../../data/zustand/useStore";
 import { PersonDetails } from "../../../features/people/components/PersonDetails";
 import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import { useSessionQuery } from "../../auth/queries/useSession";
-import {
-  usePublisherQuery,
-  useUpsertPersonMutation,
-} from "../queries/usePeople";
+import { useUpsertCongregationPublishersMutation } from "../queries/useUpsertCongregationPublishersMutation";
+import { usePublisherQuery } from "../queries/usePublisherQuery";
 
 export default function ProfilePage() {
   const [readonly, setReadonly] = useState(true);
@@ -29,7 +27,7 @@ export default function ProfilePage() {
     mutate: upsertPersonMutation,
     error,
     data,
-  } = useUpsertPersonMutation();
+  } = useUpsertCongregationPublishersMutation();
   const personDetails = useStore.use.personDetails();
   const setStoreProperties = useStore.use.setStoreProperties();
 

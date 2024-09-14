@@ -1,8 +1,8 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Database } from "../../../util/supabase-types";
 import { supabase } from "../../../data/supabase/supabase-client";
 
-const peopleKeys = {
+export const peopleKeys = {
   all: ["peoples"] as const,
   lists: () => [...peopleKeys.all, "list"] as const,
   list: (filters: string) => [...peopleKeys.lists(), { filters }] as const,
@@ -10,94 +10,10 @@ const peopleKeys = {
   detail: (id?: string | null) => [...peopleKeys.details(), id] as const,
 };
 
-type Person = Database["public"]["Tables"]["people"]["Insert"];
+export type Person = Database["public"]["Tables"]["people"]["Insert"];
 
-type PersonAny = {
+export type PersonAny = {
   [K in keyof Person]: any;
 };
 
 export type Publisher = Database["public"]["Views"]["publishers"]["Row"];
-
-// QUERIES
-
-async function getPeople() {
-  const { data, error } = await supabase.from("people").select();
-
-  if (error) {
-    throw new Error(error.message);
-  }
-  return data;
-}
-
-async function getPublishers() {
-  const { data, error } = await supabase.from("publishers").select();
-
-  if (error) {
-    throw new Error(error.message);
-  }
-  return data;
-}
-
-async function getPublisher(id: string) {
-  const { data, error } = await supabase
-    .from("publishers")
-    .select()
-    .eq("id", id)
-    .single();
-
-  if (error) {
-    throw new Error(error.message);
-  }
-  return data;
-}
-
-async function upsertPerson(newData: Publisher) {
-  function personify(publisher: Publisher): PersonAny {
-    const { is_admin, congregation_name, admin_count, ...person } = publisher;
-    return person;
-  }
-  const { data, error } = await supabase
-    .from("people")
-    .upsert(personify(newData))
-    .select()
-    .single();
-
-  if (error) {
-    throw new Error(error.message);
-  }
-  return data;
-}
-
-// HOOKS
-
-export const usePeopleQuery = () =>
-  useQuery({
-    queryKey: peopleKeys.all,
-    queryFn: getPeople,
-  });
-
-export const usePublishersQuery = () =>
-  useQuery({
-    queryKey: peopleKeys.all,
-    queryFn: getPublishers,
-  });
-
-export const usePublisherQuery = (id?: string | null) =>
-  useQuery({
-    queryKey: peopleKeys.detail(id),
-    queryFn: () => (id ? getPublisher(id) : Promise.resolve(null)),
-    enabled: !!id,
-  });
-
-export const useUpsertPersonMutation = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: (person: Publisher) => upsertPerson(person),
-    onSuccess: (person) => {
-      queryClient.setQueryData(peopleKeys.all, (oldData: Person[]) =>
-        oldData ? [...oldData, person] : [person]
-      );
-    },
-  });
-};
