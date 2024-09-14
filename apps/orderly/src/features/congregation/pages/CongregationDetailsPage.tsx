@@ -18,9 +18,9 @@ import {
   useCongregationQuery,
   useUpsertCongregationMutation,
 } from "../queries/useCongregations";
-import { usePublisherQuery } from "../../people/queries/usePeople";
 import { RouteComponentProps, useParams } from "react-router-dom";
 import { LoadingSpinner } from "../../../ui/LoadingSpinner";
+import { usePublisherQuery } from "../../people/queries/usePublisherQuery";
 
 interface UserDetailPageProps
   extends RouteComponentProps<{
