@@ -81,7 +81,7 @@ export default function ProfilePage() {
             )}
             {!readonly && (
               <IonButton onClick={handleUpdate} disabled={!online}>
-                <strong>Done</strong>
+                <strong>Save</strong>
               </IonButton>
             )}
           </IonButtons>
