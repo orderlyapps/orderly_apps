@@ -4,7 +4,6 @@ import { peopleKeys, Person, PersonAny, Publisher } from "./usePeople";
 import { supabase } from "../../../data/supabase/supabase-client";
 
 async function upsertPerson(newData: Publisher) {
-  console.log("newData:", newData)
   function personify(publisher: Publisher): PersonAny {
     const { is_admin, congregation_name, admin_count, ...person } = publisher;
     return person;

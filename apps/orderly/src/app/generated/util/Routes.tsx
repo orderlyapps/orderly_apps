@@ -3,7 +3,8 @@ import { Redirect, Route } from "react-router";
 import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import HomePage from "../pages/home/HomePage";
 import { PATHS } from "./paths";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react"; 
+const PersonDetailsPage = lazy(() => import("../pages/home/PersonDetailsPage"));
 const CongregationDetailsPage = lazy(
   () => import("../../../features/congregation/pages/CongregationDetailsPage")
 );
@@ -73,6 +74,12 @@ export function Routes({}) {
       <Route exact path={PATHS.congregation_details + "/:congregation_id"}>
         <Suspense fallback={<LoadingSpinner />}>
           <CongregationDetailsPage />
+        </Suspense>
+      </Route>
+
+      <Route exact path={ PATHS.person_details + "/:id"}>
+        <Suspense fallback={<LoadingSpinner />}>
+          <PersonDetailsPage />
         </Suspense>
       </Route>
     </IonRouterOutlet>

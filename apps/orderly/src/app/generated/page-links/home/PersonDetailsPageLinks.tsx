@@ -5,8 +5,8 @@ import { ComponentProps } from "react"
 type Param = string | undefined | null;
 
 const path = (param?: Param) => {
-  if (param) return `${ PATHS.{{snakeCase name}} }/:${param}`;
-  return PATHS.{{snakeCase name}};
+  if (param) return `${ PATHS.person_details }/:${param}`;
+  return PATHS.person_details;
 };
 
 function Button({
@@ -15,7 +15,7 @@ function Button({
 }: ComponentProps<typeof IonButton> & { param?: Param }) {
   return (
     <IonButton routerLink={path(param)} {...props}>
-      {props.children || "{{titleCase name}}"}
+      {props.children || "Person Details"}
     </IonButton>
   );
 }
@@ -26,7 +26,7 @@ function Item({
 }: ComponentProps<typeof IonItem> & { param?: Param }) {
   return (
     <IonItem routerLink={path(param)} {...props}>
-      {props.children || "{{titleCase name}}"}
+      {props.children || "Person Details"}
     </IonItem>
   );
 }
@@ -37,7 +37,7 @@ function Card({
 }: ComponentProps<typeof IonCard> & { param?: Param }) {
   return (
     <IonCard routerLink={path(param)} {...props}>
-      {props.children || "{{titleCase name}}"}
+      {props.children || "Person Details"}
     </IonCard>
   );
 }
@@ -48,11 +48,11 @@ function FabButton({
 }: ComponentProps<typeof IonFabButton> & { param?: Param }) {
   return (
     <IonFabButton routerLink={path(param)} {...props}>
-      {props.children || "{{titleCase name}}"}
+      {props.children || "Person Details"}
     </IonFabButton>
   );
 }
 
-export const {{pascalCase name}}PageLink = { Button, Item, Card, FabButton };
+export const PersonDetailsPageLink = { Button, Item, Card, FabButton };
 
 // generated

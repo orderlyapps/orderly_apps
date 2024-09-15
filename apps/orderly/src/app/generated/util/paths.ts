@@ -1,4 +1,5 @@
 export const PATHS = {
+	person_details: "/home/person-details",
 	congregation_details: "/settings/congregation-details",
   create_congregation: "/settings/create-congregation",
   settings: "/settings",

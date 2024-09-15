@@ -151,6 +151,17 @@
                 "text": "turbo dev --filter orderly"
               },
               "command": "commands.runInTerminal"
+            },
+            "~gen files": {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.purple",
+                "name": "gen",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "turbo gen"
+              },
+              "command": "commands.runInTerminal"
             }
           }
         },
