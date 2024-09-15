@@ -1,3 +1,4 @@
+
 create policy "Enable all for admins of congregation"
 on "public"."people"
 as permissive

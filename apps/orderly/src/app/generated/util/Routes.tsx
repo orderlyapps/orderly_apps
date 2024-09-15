@@ -4,6 +4,7 @@ import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import HomePage from "../pages/home/HomePage";
 import { PATHS } from "./paths";
 import { lazy, Suspense } from "react"; 
+const RemindersPage = lazy(() => import("../pages/home/RemindersPage")); 
 const PersonDetailsPage = lazy(() => import("../../../features/people/pages/PersonDetailsPage"));
 const CongregationDetailsPage = lazy(
   () => import("../../../features/congregation/pages/CongregationDetailsPage")
@@ -80,6 +81,12 @@ export function Routes({}) {
       <Route exact path={ PATHS.person_details + "/:id"}>
         <Suspense fallback={<LoadingSpinner />}>
           <PersonDetailsPage />
+        </Suspense>
+      </Route>
+
+      <Route exact path={ PATHS.reminders }>
+        <Suspense fallback={<LoadingSpinner />}>
+          <RemindersPage />
         </Suspense>
       </Route>
     </IonRouterOutlet>
