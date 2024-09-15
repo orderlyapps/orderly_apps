@@ -3,6 +3,7 @@ import { useCongregationPublishersQuery } from "../queries/useCongregationPublis
 import { usePublisherQuery } from "../queries/usePublisherQuery";
 import { useSessionQuery } from "../../auth/queries/useSession";
 import { PersonDetailsPageLink } from "../../../app/generated/page-links/home/PersonDetailsPageLinks";
+import { formatDisplayName } from "../helpers/formatDisplayName";
 
 export function PeopleList() {
   const { data } = useSessionQuery();
@@ -16,7 +17,7 @@ export function PeopleList() {
     return (
       <IonList key={p.id}>
         <PersonDetailsPageLink.Item param={p.id}>
-          {p.full_name}
+          {formatDisplayName(p)}
         </PersonDetailsPageLink.Item>
       </IonList>
     );

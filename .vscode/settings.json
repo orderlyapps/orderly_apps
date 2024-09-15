@@ -104,6 +104,17 @@
               },
               "command": "commands.runInTerminal"
             },
+            "~link main project": {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.green",
+                "name": "supabase",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "supabase link --project-ref akeeznpogwyyyqkhrfnh"
+              },
+              "command": "commands.runInTerminal"
+            },
             "~link staging project": {
               "args": {
                 "icon": "circle-filled",
@@ -111,7 +122,7 @@
                 "name": "supabase",
                 "reuse": "newest",
                 "reveal": true,
-                "text": "supabase link --debug"
+                "text": "supabase link --project-ref wulfwdtrujupintyigya"
               },
               "command": "commands.runInTerminal"
             },

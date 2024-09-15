@@ -24,7 +24,7 @@ export default function ProfilePage() {
   const online = useStore.use.online();
   const { data: person } = usePublisherQuery(session.data?.user.id);
   const {
-    mutate: upsertPersonMutation,
+    mutateAsync: upsertPersonMutation,
     error,
     data,
   } = useUpsertCongregationPublishersMutation();
