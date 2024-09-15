@@ -10,6 +10,7 @@ import {
 import { Suspense } from "react";
 import { PeopleList } from "../components/PeopleList";
 import { LoadingSpinner } from "../../../ui/LoadingSpinner";
+import { AddPersonModal } from "../components/AddPersonModal";
 
 export default function PublishersList() {
   return (
@@ -20,6 +21,9 @@ export default function PublishersList() {
             <IonBackButton></IonBackButton>
           </IonButtons>
           <IonTitle>Publishers List</IonTitle>
+          <IonButtons slot="end">
+            <AddPersonModal></AddPersonModal>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent>

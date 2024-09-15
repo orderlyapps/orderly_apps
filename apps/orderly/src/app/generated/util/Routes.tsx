@@ -4,7 +4,7 @@ import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import HomePage from "../pages/home/HomePage";
 import { PATHS } from "./paths";
 import { lazy, Suspense } from "react"; 
-const PersonDetailsPage = lazy(() => import("../pages/home/PersonDetailsPage"));
+const PersonDetailsPage = lazy(() => import("../../../features/people/pages/PersonDetailsPage"));
 const CongregationDetailsPage = lazy(
   () => import("../../../features/congregation/pages/CongregationDetailsPage")
 );

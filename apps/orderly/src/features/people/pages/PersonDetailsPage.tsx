@@ -11,12 +11,12 @@ import {
   useIonToast,
 } from "@ionic/react";
 import { Suspense, useEffect, useState } from "react";
-import { LoadingSpinner } from "../../../../ui/LoadingSpinner";
-import { PersonDetails } from "../../../../features/people/components/PersonDetails";
-import { useStore } from "../../../../data/zustand/useStore";
+import { LoadingSpinner } from "../../../ui/LoadingSpinner";
+import { PersonDetails } from "../components/PersonDetails";
+import { useStore } from "../../../data/zustand/useStore";
 import { useParams } from "react-router";
-import { usePublisherQuery } from "../../../../features/people/queries/usePublisherQuery";
-import { useUpsertCongregationPublishersMutation } from "../../../../features/people/queries/useUpsertCongregationPublishersMutation";
+import { usePublisherQuery } from "../queries/usePublisherQuery";
+import { useUpsertCongregationPublishersMutation } from "../queries/useUpsertCongregationPublishersMutation";
 
 export default function PersonDetailsPage() {
   const [readonly, setReadonly] = useState(true);

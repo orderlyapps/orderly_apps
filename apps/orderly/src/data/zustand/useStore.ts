@@ -19,6 +19,7 @@ type StoreState = typeof initialState;
 
 type StoreActions = {
   resetStore: () => void;
+  resetStoreProperty: (property: keyof typeof initialState) => void;
   setStoreProperties: <K extends keyof StoreState>(
     property: K,
     value: Partial<StoreState[K]>
@@ -34,6 +35,15 @@ const useStoreBase = create<StoreState & StoreActions>()(
         set(() => ({
           ...initialState,
         })),
+
+      resetStoreProperty: (property) => {
+        set((state) => {
+          return {
+            ...state,
+            [property]: initialState[property],
+          };
+        });
+      },
 
       setStoreProperties: (property, value) => {
         set((state) => {

@@ -5,7 +5,7 @@ import { ComponentProps } from "react"
 type Param = string | undefined | null;
 
 const path = (param?: Param) => {
-  if (param) return `${ PATHS.person_details }/:${param}`;
+  if (param) return `${ PATHS.person_details }/${param}`;
   return PATHS.person_details;
 };
 
