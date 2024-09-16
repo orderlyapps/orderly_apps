@@ -9,6 +9,7 @@ import {
 import { OutlinesListPageLink } from "../../page-links/home/OutlinesListPageLinks";
 import { PublishersListPageLink } from "../../page-links/home/PublishersListLinks";
 import { RemindersPageLink } from "../../page-links/home/RemindersPageLinks";
+import { PublicTalksPageLink } from "../../page-links/home/PublicTalksPageLinks";
 
 const Home: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ const Home: React.FC = () => {
           <OutlinesListPageLink.Item></OutlinesListPageLink.Item>
           <PublishersListPageLink.Item></PublishersListPageLink.Item>
           <RemindersPageLink.Item></RemindersPageLink.Item>
+          <PublicTalksPageLink.Item></PublicTalksPageLink.Item>
         </IonList>
       </IonContent>
     </IonPage>
