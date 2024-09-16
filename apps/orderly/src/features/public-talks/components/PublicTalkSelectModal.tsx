@@ -13,13 +13,13 @@ import {
 } from "@ionic/react";
 import { useState } from "react";
 import { formatToTheocraticWeek } from "../../../util/dates/formatToTheocraticWeek";
-import { getSaturdayOfWeek } from "../../../util/dates/getSaturdayOfWeek";
+import { nextSaturday } from "../../../util/dates/nextSaturday";
 import { formatDateForSMS } from "../../../util/dates/formatDateForSMS";
 
 export function PublicTalkSelectModal({ week }: { week: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const message = encodeURIComponent(
-    `Hi xxxxxx,\nJust wondering if you have any speakers available to come to Maitland on ${formatDateForSMS(new Date(getSaturdayOfWeek(week)))}\n😊`
+    `Hi xxxxxx,\nJust wondering if you have any speakers available to come to Maitland on ${formatDateForSMS(nextSaturday(week))}\n😊`
   );
 
   return (

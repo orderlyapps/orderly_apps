@@ -1,7 +1,6 @@
-export function formatDateForSMS(date: Date): string {
-  return new Intl.DateTimeFormat('en-US', {
-    weekday: 'short',
-    day: 'numeric',
-    month: 'short',
-  }).format(date);
+import { format } from "date-fns";
+
+export function formatDateForSMS(date: string): string {
+  return format(date, "E d, MMM")
 }
+
