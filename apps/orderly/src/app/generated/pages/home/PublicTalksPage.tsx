@@ -1,29 +1,30 @@
 import {
   IonBackButton,
   IonButtons,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
   IonContent,
   IonHeader,
-  IonItem,
-  IonItemDivider,
-  IonLabel,
   IonList,
   IonPage,
+  IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { Fragment, Suspense } from "react";
+import { Suspense } from "react";
 import { LoadingSpinner } from "../../../../ui/LoadingSpinner";
-import { previousMonday } from "../../../../util/dates/previousMonday";
 import { getScheduleDates } from "../../../../util/dates/getScheduleDates";
-import { formatToTheocraticWeek } from "../../../../util/dates/formatToTheocraticWeek";
-import { PublicTalkSelectModal } from "../../../../features/public-talks/components/PublicTalkSelectModal";
+import { useCongregationScheduleQuery } from "../../../../features/schedule/queries/useSchedule";
+import { useSessionQuery } from "../../../../features/auth/queries/useSession";
+import { usePublisherQuery } from "../../../../features/people/queries/usePublisherQuery";
+import { TheocraticWeekItem } from "../../../../features/schedule/components/TheocraticWeekItem";
+import { formatName } from "../../../../util/string/formatName";
 
 export default function PublicTalksPage() {
+  const { data } = useSessionQuery();
+  const { data: publisher } = usePublisherQuery(data?.user?.id);
+  const { data: schedule } = useCongregationScheduleQuery(
+    publisher?.congregation_id
+  );
+
   return (
     <IonPage>
       <IonHeader>
@@ -37,28 +38,27 @@ export default function PublicTalksPage() {
       <IonContent>
         <Suspense fallback={<LoadingSpinner />}>
           <IonList>
-            {getScheduleDates(previousMonday()).map((week, index) => {
-              const date = new Date(week);
-              const month = date.toLocaleString("default", { month: "long" });
-              const prevMonth =
-                index > 0
-                  ? new Date(
-                      getScheduleDates(previousMonday())[index - 1]
-                    ).toLocaleString("default", { month: "long" })
-                  : "";
+            {getScheduleDates().map((week, index) => {
+              const weekDetails = schedule?.find(
+                ({ week: w }) => week.week === w
+              );
               return (
-                <Fragment key={week}>
-                  {month !== prevMonth && (
-                    <IonItemDivider
-                      className={"ion-margin-top-xxx ion-padding"}
-                    >
-                      <IonLabel>
-                        <h1>{month}</h1>
-                      </IonLabel>
-                    </IonItemDivider>
-                  )}
-                  <PublicTalkSelectModal week={week} />
-                </Fragment>
+                <TheocraticWeekItem key={index} week={week} index={index}>
+                  <p>
+                    <strong>Speaker: </strong>
+                    <IonText color={"dark"}>
+                      {formatName(
+                        weekDetails?.public_talk_details
+                          ? weekDetails.public_talk_details
+                          : {},
+                        { format: "display_last" }
+                      )}
+                    </IonText>
+                  </p>
+                  <p>
+                    <strong>Theme:</strong>
+                  </p>
+                </TheocraticWeekItem>
               );
             })}
           </IonList>

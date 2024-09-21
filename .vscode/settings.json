@@ -163,6 +163,17 @@
               },
               "command": "commands.runInTerminal"
             },
+            "~build orderly": {
+              "args": {
+                "icon": "circle-filled",
+                "iconColor": "charts.blue",
+                "name": "dev",
+                "reuse": "newest",
+                "reveal": true,
+                "text": "turbo build --filter orderly"
+              },
+              "command": "commands.runInTerminal"
+            },
             "~gen files": {
               "args": {
                 "icon": "circle-filled",
