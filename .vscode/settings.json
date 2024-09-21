@@ -166,8 +166,8 @@
             "~build orderly": {
               "args": {
                 "icon": "circle-filled",
-                "iconColor": "charts.blue",
-                "name": "dev",
+                "iconColor": "charts.lines",
+                "name": "build",
                 "reuse": "newest",
                 "reveal": true,
                 "text": "turbo build --filter orderly"

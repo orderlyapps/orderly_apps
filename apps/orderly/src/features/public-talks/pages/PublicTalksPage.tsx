@@ -10,13 +10,13 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { Suspense } from "react";
-import { LoadingSpinner } from "../../../../ui/LoadingSpinner";
-import { getScheduleDates } from "../../../../util/dates/getScheduleDates";
-import { useCongregationScheduleQuery } from "../../../../features/schedule/queries/useSchedule";
-import { useSessionQuery } from "../../../../features/auth/queries/useSession";
-import { usePublisherQuery } from "../../../../features/people/queries/usePublisherQuery";
-import { TheocraticWeekItem } from "../../../../features/schedule/components/TheocraticWeekItem";
-import { formatName } from "../../../../util/string/formatName";
+import { LoadingSpinner } from "../../../ui/LoadingSpinner";
+import { getScheduleDates } from "../../../util/dates/getScheduleDates";
+import { useCongregationScheduleQuery } from "../../schedule/queries/useSchedule";
+import { useSessionQuery } from "../../auth/queries/useSession";
+import { usePublisherQuery } from "../../people/queries/usePublisherQuery";
+import { TheocraticWeekItem } from "../../schedule/components/TheocraticWeekItem";
+import { formatName } from "../../../util/string/formatName";
 
 export default function PublicTalksPage() {
   const { data } = useSessionQuery();

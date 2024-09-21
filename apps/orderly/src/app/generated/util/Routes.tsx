@@ -3,10 +3,19 @@ import { Redirect, Route } from "react-router";
 import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import HomePage from "../pages/home/HomePage";
 import { PATHS } from "./paths";
-import { lazy, Suspense } from "react"; 
-const PublicTalksPage = lazy(() => import("../pages/home/PublicTalksPage")); 
-const RemindersPage = lazy(() => import("../pages/home/RemindersPage")); 
-const PersonDetailsPage = lazy(() => import("../../../features/people/pages/PersonDetailsPage"));
+import { lazy, Suspense } from "react";
+const PublicTalkDetailsPage = lazy(
+  () => import("../../../features/public-talks/pages/PublicTalkDetailsPage")
+);
+const PublicTalksPage = lazy(
+  () => import("../../../features/public-talks/pages/PublicTalksPage")
+);
+const RemindersPage = lazy(
+  () => import("../../../features/reminders/pages/RemindersPage")
+);
+const PersonDetailsPage = lazy(
+  () => import("../../../features/people/pages/PersonDetailsPage")
+);
 const CongregationDetailsPage = lazy(
   () => import("../../../features/congregation/pages/CongregationDetailsPage")
 );
@@ -79,21 +88,27 @@ export function Routes({}) {
         </Suspense>
       </Route>
 
-      <Route exact path={ PATHS.person_details + "/:id"}>
+      <Route exact path={PATHS.person_details + "/:id"}>
         <Suspense fallback={<LoadingSpinner />}>
           <PersonDetailsPage />
         </Suspense>
       </Route>
 
-      <Route exact path={ PATHS.reminders }>
+      <Route exact path={PATHS.reminders}>
         <Suspense fallback={<LoadingSpinner />}>
           <RemindersPage />
         </Suspense>
       </Route>
 
-      <Route exact path={ PATHS.public_talks }>
+      <Route exact path={PATHS.public_talks}>
         <Suspense fallback={<LoadingSpinner />}>
           <PublicTalksPage />
+        </Suspense>
+      </Route>
+
+      <Route exact path={PATHS.public_talk_details + "/:id"}>
+        <Suspense fallback={<LoadingSpinner />}>
+          <PublicTalkDetailsPage />
         </Suspense>
       </Route>
     </IonRouterOutlet>

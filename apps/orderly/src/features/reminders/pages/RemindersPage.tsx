@@ -10,7 +10,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { Suspense } from "react";
-import { LoadingSpinner } from "../../../../ui/LoadingSpinner";
+import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 
 export default function RemindersPage() {
   return (
