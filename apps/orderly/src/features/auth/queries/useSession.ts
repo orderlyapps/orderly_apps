@@ -1,5 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../../../data/supabase/supabase-client";
+import { supabaseSignOut } from "../helpers/supabaseSignOut";
+import { supabaseSignIn } from "../helpers/supabaseSignIn";
+
+// TODO change this to zustand
 
 const sessionKeys = {
   all: ["session"] as const,
@@ -13,20 +17,6 @@ async function getSession() {
   const { data } = await supabase.auth.getSession();
   return data.session;
 }
-async function signInWithGoogle() {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: import.meta.env.VITE_AUTH_REDIRECT,
-    },
-  });
-  return data || error;
-}
-
-export const signOut = async () => {
-  const { error } = await supabase.auth.signOut();
-  return null || error;
-};
 
 export const useSessionQuery = () => {
   return useQuery({
@@ -38,7 +28,7 @@ export const useSessionQuery = () => {
 export const useGoogleSignInSessionMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: signInWithGoogle,
+    mutationFn: supabaseSignIn,
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: sessionKeys.all,
@@ -51,7 +41,7 @@ export const useGoogleSignInSessionMutation = () => {
 export const useSignOutSessionMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: signOut,
+    mutationFn: supabaseSignOut,
     onSuccess: () => {
       queryClient.setQueryData(sessionKeys.all, null);
     },

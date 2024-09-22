@@ -17,6 +17,8 @@ import { useSessionQuery } from "../../auth/queries/useSession";
 import { usePublisherQuery } from "../../people/queries/usePublisherQuery";
 import { TheocraticWeekItem } from "../../schedule/components/TheocraticWeekItem";
 import { formatName } from "../../../util/string/formatName";
+import { PATHS } from "../../../app/generated/util/paths";
+import { wallet } from "ionicons/icons";
 
 export default function PublicTalksPage() {
   const { data } = useSessionQuery();
@@ -38,25 +40,27 @@ export default function PublicTalksPage() {
       <IonContent>
         <Suspense fallback={<LoadingSpinner />}>
           <IonList>
-            {getScheduleDates().map((week, index) => {
-              const weekDetails = schedule?.find(
-                ({ week: w }) => week.week === w
-              );
+            {getScheduleDates().map((w, index) => {
+              const weekDetails = schedule?.find(({ week }) => w.week === week);
               return (
-                <TheocraticWeekItem key={index} week={week} index={index}>
+                <TheocraticWeekItem
+                  key={index}
+                  week={w}
+                  index={index}
+                  routerLink={PATHS.public_talk_details + `/${w.week}`}
+                >
                   <p>
                     <strong>Speaker: </strong>
                     <IonText color={"dark"}>
-                      {formatName(
-                        weekDetails?.public_talk_details
-                          ? weekDetails.public_talk_details
-                          : {},
-                        { format: "display_last" }
-                      )}
+                      {weekDetails &&
+                        formatName(weekDetails, { format: "display_last" })}
                     </IonText>
                   </p>
                   <p>
-                    <strong>Theme:</strong>
+                    <strong>Theme: </strong>
+                    <IonText color={"dark"}>
+                      {weekDetails && weekDetails.theme}
+                    </IonText>
                   </p>
                 </TheocraticWeekItem>
               );

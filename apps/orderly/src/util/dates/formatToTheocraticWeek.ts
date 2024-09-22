@@ -1,6 +1,6 @@
 import { addDays, format } from "date-fns";
 
-export const formatToTheocraticWeek = (date: Date): string => {
+export const formatToTheocraticWeek = (date: Date | string): string => {
   const endDate = addDays(date, 6);
 
   const start = format(date, "MMM dd - ");

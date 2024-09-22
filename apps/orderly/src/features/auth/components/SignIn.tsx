@@ -13,6 +13,7 @@ import {
   useSignOutSessionMutation,
 } from "../queries/useSession";
 import { ProfilePageLink } from "../../../app/generated/page-links/settings/ProfilePageLinks";
+import { useStore } from "../../../data/zustand/useStore";
 
 export function SignIn() {
   const { data: session } = useSessionQuery();

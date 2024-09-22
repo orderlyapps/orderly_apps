@@ -7,6 +7,7 @@ import { Publisher } from "../../features/people/queries/usePeople";
 
 const initialState = {
   personDetails: {} as Publisher,
+  publicTalkDetails: {} as Database["public"]["Views"]["public_talk_details"]["Row"],
   user: {} as Publisher,
   congregationDetails:
     {} as Database["public"]["Tables"]["congregations"]["Update"],
@@ -22,7 +23,7 @@ type StoreActions = {
   resetStoreProperty: (property: keyof typeof initialState) => void;
   setStoreProperties: <K extends keyof StoreState>(
     property: K,
-    value: Partial<StoreState[K]>
+    value: Partial<StoreState[K]> | "reset"
   ) => void;
 };
 
@@ -47,6 +48,13 @@ const useStoreBase = create<StoreState & StoreActions>()(
 
       setStoreProperties: (property, value) => {
         set((state) => {
+          if (value === "reset") {
+            return {
+              ...state,
+              [property]: initialState[property],
+            };
+          }
+
           const existingValues =
             typeof state[property] === "object" ? state[property] : null;
           const valueIsObject = typeof value === "object" ? { ...value } : null;

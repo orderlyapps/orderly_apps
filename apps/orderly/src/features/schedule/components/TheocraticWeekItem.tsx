@@ -1,6 +1,6 @@
 import { IonItem, IonItemDivider, IonLabel, IonText } from "@ionic/react";
 import { formatToTheocraticWeek } from "../../../util/dates/formatToTheocraticWeek";
-import { Fragment } from "react";
+import { ComponentProps, Fragment } from "react";
 import { format } from "date-fns";
 
 export function TheocraticWeekItem({
@@ -8,7 +8,8 @@ export function TheocraticWeekItem({
   week: { week, date },
   index,
   onClick,
-}: {
+  ...props
+}: ComponentProps<typeof IonItem> & {
   children: React.ReactNode;
   week: { week: string; date: Date };
   index: number;
@@ -23,7 +24,7 @@ export function TheocraticWeekItem({
           </IonText>
         </IonItemDivider>
       )}
-      <IonItem onClick={onClick}>
+      <IonItem onClick={onClick} {...props}>
         <IonLabel>
           <strong>{formatToTheocraticWeek(date)}</strong>
           {children}
