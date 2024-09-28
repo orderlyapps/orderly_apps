@@ -5,5 +5,12 @@ export const useAppState = () => {
   const online = useStore.use.online();
   const session = useStore.use.session();
   const user = useUserQuery(session?.user.id || "");
-  return { canEdit: !!online && !!session, online, session, user };
+  const setStoreProperties = useStore.use.setStoreProperties();
+  return {
+    canEdit: !!online && !!session,
+    online,
+    session,
+    user,
+    setStoreProperties,
+  };
 };

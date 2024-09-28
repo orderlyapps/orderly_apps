@@ -31,9 +31,13 @@ export default function CongregationDetailsPage({
 }: Partial<UserDetailPageProps>) {
   const params: { congregation_id?: string } = useParams();
   const [readonly, setReadonly] = useState(true);
-  const online = useStore.use.online();
+  const {
+    canEdit,
+    user: { data: userData },
+    setStoreProperties,
+  } = useAppState();
   const congregationDetails = useStore.use.congregationDetails();
-  const setStoreProperties = useStore.use.setStoreProperties();
+
   const { data: congregation } = useCongregationQuery(params.congregation_id);
   const { mutate: upsertCongregationMutation, error } =
     useUpsertCongregationMutation();
@@ -78,18 +82,18 @@ export default function CongregationDetailsPage({
             {!readonly && <IonButton onClick={handleCancel}>Cancel</IonButton>}
           </IonButtons>
           <IonTitle>{congregationDetails?.name}</IonTitle>
-          {user.data?.is_admin && (
+          {userData?.is_admin && (
             <IonButtons slot="end">
               {readonly && (
                 <IonButton
                   onClick={() => setReadonly(false)}
-                  disabled={!online}
+                  disabled={!canEdit}
                 >
                   <strong>Edit</strong>
                 </IonButton>
               )}
               {!readonly && (
-                <IonButton onClick={handleUpdate} disabled={!online}>
+                <IonButton onClick={handleUpdate} disabled={!canEdit}>
                   <strong>Done</strong>
                 </IonButton>
               )}
