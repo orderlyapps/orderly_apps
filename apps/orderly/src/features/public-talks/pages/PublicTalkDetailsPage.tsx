@@ -13,20 +13,21 @@ import { Suspense, useEffect, useState } from "react";
 import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import { useParams } from "react-router";
 import { useCongregationScheduleQuery } from "../../schedule/queries/useSchedule";
-import { useSessionQuery } from "../../auth/queries/useSession";
-import { usePublisherQuery } from "../../people/queries/usePublisherQuery";
 import { useStore } from "../../../data/zustand/useStore";
 import { PublicTalkDetails } from "../components/PublicTalkDetails";
 import { formatToTheocraticWeek } from "../../../util/dates/formatToTheocraticWeek";
+import { useAppState } from "../../../data/zustand/useAppState";
 
 export default function PublicTalkDetailsPage() {
   const [readonly, setReadonly] = useState(true);
-  const online = useStore.use.online();
 
   const { id } = useParams<{ id: string }>();
-  const { data: session } = useSessionQuery();
-  const { data: publisher } = usePublisherQuery(session?.user?.id);
-  const { data } = useCongregationScheduleQuery(publisher?.congregation_id);
+  const {
+    canEdit,
+    user: { data: userData },
+  } = useAppState();
+
+  const { data } = useCongregationScheduleQuery(userData?.congregation_id);
   const setStoreProperties = useStore.use.setStoreProperties();
 
   const details = data?.find((d) => d.week === id);
@@ -61,12 +62,12 @@ export default function PublicTalkDetailsPage() {
           <IonTitle>{formatToTheocraticWeek(id)}</IonTitle>
           <IonButtons slot="end">
             {readonly && (
-              <IonButton onClick={() => setReadonly(false)} disabled={!online}>
+              <IonButton onClick={() => setReadonly(false)} disabled={!canEdit}>
                 <strong>Edit</strong>
               </IonButton>
             )}
             {!readonly && (
-              <IonButton onClick={handleUpdate} disabled={!online}>
+              <IonButton onClick={handleUpdate} disabled={!canEdit}>
                 <strong>Save</strong>
               </IonButton>
             )}

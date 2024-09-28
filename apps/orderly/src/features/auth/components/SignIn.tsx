@@ -7,26 +7,20 @@ import {
   IonLabel,
   IonList,
 } from "@ionic/react";
-import {
-  useGoogleSignInSessionMutation,
-  useSessionQuery,
-  useSignOutSessionMutation,
-} from "../queries/useSession";
 import { ProfilePageLink } from "../../../app/generated/page-links/settings/ProfilePageLinks";
 import { useStore } from "../../../data/zustand/useStore";
+import { supabaseSignIn } from "../helpers/supabaseSignIn";
+import { supabaseSignOut } from "../helpers/supabaseSignOut";
 
 export function SignIn() {
-  const { data: session } = useSessionQuery();
-  const { mutate: signOut } = useSignOutSessionMutation();
-  const { mutate: signIn } = useGoogleSignInSessionMutation();
+  const session = useStore.use.session();
 
   const handleLogin = async (e: any) => {
-    e.preventDefault();
-    signIn();
+    supabaseSignIn();
   };
 
   const handleSignOut = async () => {
-    signOut();
+    supabaseSignOut();
   };
 
   return (

@@ -12,7 +12,6 @@ import {
 } from "@ionic/react";
 import { Suspense, useEffect, useState } from "react";
 import { CongregationDetails } from "../components/CongregationDetails";
-import { useSessionQuery } from "../../auth/queries/useSession";
 import { useStore } from "../../../data/zustand/useStore";
 import {
   useCongregationQuery,
@@ -20,7 +19,7 @@ import {
 } from "../queries/useCongregations";
 import { RouteComponentProps, useParams } from "react-router-dom";
 import { LoadingSpinner } from "../../../ui/LoadingSpinner";
-import { usePublisherQuery } from "../../people/queries/usePublisherQuery";
+import { useAppState } from "../../../data/zustand/useAppState";
 
 interface UserDetailPageProps
   extends RouteComponentProps<{
@@ -31,16 +30,13 @@ export default function CongregationDetailsPage({
   match,
 }: Partial<UserDetailPageProps>) {
   const params: { congregation_id?: string } = useParams();
-  console.log("kjb:", params);
   const [readonly, setReadonly] = useState(true);
-  const session = useSessionQuery();
   const online = useStore.use.online();
-  const user = usePublisherQuery(session.data?.user.id);
   const congregationDetails = useStore.use.congregationDetails();
+  const setStoreProperties = useStore.use.setStoreProperties();
   const { data: congregation } = useCongregationQuery(params.congregation_id);
   const { mutate: upsertCongregationMutation, error } =
     useUpsertCongregationMutation();
-  const setStoreProperties = useStore.use.setStoreProperties();
 
   const [toast] = useIonToast();
   const [showLoading, hideLoading] = useIonLoading();
@@ -68,7 +64,6 @@ export default function CongregationDetailsPage({
   }
 
   useEffect(() => {
-    console.log("match:", match?.params);
     if (congregation) {
       setStoreProperties("congregationDetails", congregation);
     }

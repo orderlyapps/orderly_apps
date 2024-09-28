@@ -69,6 +69,13 @@ export type Database = {
             referencedRelation: "publishers"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "public_admins_person_id_fkey"
+            columns: ["person_id"]
+            isOneToOne: false
+            referencedRelation: "speakers"
+            referencedColumns: ["id"]
+          },
         ]
       }
       congregations: {
@@ -211,6 +218,13 @@ export type Database = {
             referencedRelation: "publishers"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "public_talks_speaker_id_fkey"
+            columns: ["speaker_id"]
+            isOneToOne: false
+            referencedRelation: "speakers"
+            referencedColumns: ["id"]
+          },
         ]
       }
       speaker_availability: {
@@ -239,6 +253,13 @@ export type Database = {
             columns: ["speaker_id"]
             isOneToOne: true
             referencedRelation: "publishers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "speaker_availability_speaker_id_fkey"
+            columns: ["speaker_id"]
+            isOneToOne: true
+            referencedRelation: "speakers"
             referencedColumns: ["id"]
           },
         ]
@@ -276,6 +297,13 @@ export type Database = {
             columns: ["speaker_id"]
             isOneToOne: false
             referencedRelation: "publishers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "speaker_outlines_speaker_id_fkey"
+            columns: ["speaker_id"]
+            isOneToOne: false
+            referencedRelation: "speakers"
             referencedColumns: ["id"]
           },
         ]
@@ -333,12 +361,18 @@ export type Database = {
             referencedRelation: "publishers"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "public_talks_speaker_id_fkey"
+            columns: ["speaker_id"]
+            isOneToOne: false
+            referencedRelation: "speakers"
+            referencedColumns: ["id"]
+          },
         ]
       }
       publishers: {
         Row: {
           admin_count: number | null
-          array_agg: string[] | null
           avatar_url: string | null
           congregation_id: string | null
           congregation_name: string | null
@@ -350,6 +384,37 @@ export type Database = {
           is_admin: boolean | null
           last_name: string | null
           middle_name: string | null
+          outlines: string[] | null
+          speaker_availability: number | null
+          updated_at: string | null
+          username: string | null
+          website: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_people_congregation_id_fkey"
+            columns: ["congregation_id"]
+            isOneToOne: false
+            referencedRelation: "congregations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      speakers: {
+        Row: {
+          admin_count: number | null
+          avatar_url: string | null
+          congregation_id: string | null
+          congregation_name: string | null
+          created_at: string | null
+          display_name: string | null
+          first_name: string | null
+          full_name: string | null
+          id: string | null
+          is_admin: boolean | null
+          last_name: string | null
+          middle_name: string | null
+          outlines: string[] | null
           speaker_availability: number | null
           updated_at: string | null
           username: string | null

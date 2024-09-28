@@ -20,9 +20,7 @@ export function useInit() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session) {
-        setStoreProperties("session", session);
-      }
+      setStoreProperties("session", session || "reset");
     });
 
     // set online status

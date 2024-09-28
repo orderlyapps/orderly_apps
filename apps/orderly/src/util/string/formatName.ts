@@ -44,5 +44,5 @@ export function formatName(
     return `${firstName} ${middleName} ${lastName}`;
   }
 
-  return `${lastName || ""}${lastName && displayName ? ", " : ""}${displayName || firstName || ""}`;
+  return `${lastName || ""}${lastName && displayName ? "," : ""} ${displayName || firstName || ""}`;
 }
