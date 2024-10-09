@@ -1,77 +1,107 @@
-import { IonItem, IonLabel } from "@ionic/react";
+import { IonLabel } from "@ionic/react";
 import { useStore } from "../../../data/zustand/useStore";
-import { formatName } from "../../../util/string/formatName";
-import AutocompleteModalItem from "../../../ui/AutocompleteModalItem";
+import AutocompleteModalItem, { Item } from "../../../ui/AutocompleteModalItem";
 import { useSpeakersQuery } from "../queries/useSpeakersQuery";
 import { useAppState } from "../../../data/zustand/useAppState";
+import { formatName } from "../../../util/string/formatName";
+import { useEffect, useState } from "react";
+import { getSearchStringFromObject } from "../../../util/string/getSearchString";
 
 export function PublicTalkDetails({
   readonly = false,
 }: {
   readonly?: boolean;
 }) {
-  const appState = useAppState();
-
-
+  const { setStoreProperties } = useAppState();
+  const [congregations, setCongregations] = useState<Item[]>([]);
   const publicTalkDetails = useStore.use.publicTalkDetails();
 
-  const setStoreProperties = useStore.use.setStoreProperties();
-  const { data: speakers } = useSpeakersQuery();
+  const { data: speakersList } = useSpeakersQuery();
 
-  const congregations = speakers?.map((s) => ({
+  const speakers = speakersList?.map((s) => ({
+    name: formatName(s) || "",
+    id: s.id,
+    component: null,
+    data: s,
+  }));
+
+  const outlines = speakersList?.map((s) => ({
     name: s.congregation_name || "",
     id: s.id,
     component: null,
     data: s,
   }));
 
-  // const props = {
-  //   onIonInput: (e: any) =>
-  //     setStoreProperties("publicTalkDetails", {
-  //       week: details?.week,
-  //       congregation_id: details?.congregation_id,
-  //       [e.target.name]: e.target.value,
-  //     }),
-  //   clearInput: true,
-  //   readonly,
-  //   className: "ion-text-end",
-  // };
-
   const onSelect = (e: any) => {
-    console.log("onSelect  e:", e.target.value.data);
+    // const props = {
+    //   onIonInput: (e: any) =>
+    //     setStoreProperties("publicTalkDetails", {
+    //       week: details?.week,
+    //       congregation_id: details?.congregation_id,
+    //       [e.target.name]: e.target.value,
+    //     }),
+    //   clearInput: true,
+    //   readonly,
+    //   className: "ion-text-end",
+    // };
     setStoreProperties("publicTalkDetails", {});
   };
+
+  useEffect(() => {
+    if (speakersList) {
+      const congregations = speakersList
+        ? Array.from(new Set(speakersList.map((s) => s.congregation_id))).map(
+            (id) => {
+              const name =
+                speakersList.find((s) => s.congregation_id === id)
+                  ?.congregation_name || "";
+              return {
+                name,
+                id,
+                component: null,
+                data: null,
+                searchString: name,
+              };
+            }
+          )
+        : [];
+      setCongregations(congregations);
+    }
+  }, [speakersList]);
 
   return (
     <>
       <AutocompleteModalItem
         items={congregations}
         onSelect={onSelect}
-        title={"Select congregation"}
-        name="home_congregation_name"
+        title={"Select Congregation"}
+        name="home_congregation_id"
+        readonly={readonly}
       >
         <IonLabel>Congregation:</IonLabel>
         {publicTalkDetails.home_congregation_name}
       </AutocompleteModalItem>
 
       {/* <AutocompleteModalItem
-        items={items}
+        items={speakers}
         onSelect={onSelect}
-        title={"Select speaker"}
-        name="home_congregation_name"
+        title={"Select Speaker"}
+        name="speaker_id"
+        readonly={readonly}
       >
         <IonLabel>Speaker:</IonLabel>
-        {details.home_congregation_name}
+        {formatName(publicTalkDetails)}
       </AutocompleteModalItem>
 
       <AutocompleteModalItem
-        items={items}
+        items={outlines}
         onSelect={onSelect}
-        title={"Select speaker"}
-        name="home_congregation_name"
+        title={"Select Theme"}
+        name="outline_id"
+        readonly={readonly}
       >
-        <IonLabel>Theme:</IonLabel>
-        {details.home_congregation_name}
+        <IonLabel>Outline:</IonLabel>
+        {publicTalkDetails.theme}
       </AutocompleteModalItem> */}
     </>
   );

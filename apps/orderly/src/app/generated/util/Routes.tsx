@@ -106,7 +106,7 @@ export function Routes({}) {
         </Suspense>
       </Route>
 
-      <Route exact path={PATHS.public_talk_details + "/:id"}>
+      <Route exact path={PATHS.public_talk_details + "/:week"}>
         <Suspense fallback={<LoadingSpinner />}>
           <PublicTalkDetailsPage />
         </Suspense>

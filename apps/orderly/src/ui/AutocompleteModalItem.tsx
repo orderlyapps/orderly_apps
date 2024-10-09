@@ -11,13 +11,14 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { chevronExpandOutline } from "ionicons/icons";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 export interface Item {
   name: string;
-  component?: ReactNode;
+  searchString: string;
   id: string | null;
   data: any;
+  component?: ReactNode;
 }
 
 interface AutocompleteProps {
@@ -69,13 +70,17 @@ function AutocompleteModalItem({
       setFilteredItems(
         items?.filter((item) => {
           return (
-            item.name.toLowerCase().includes(normalizedQuery) ||
+            item.searchString.toLowerCase().includes(normalizedQuery) ||
             selectedItem?.id === item.id
           );
         })
       );
     }
   };
+
+  useEffect(() => {
+    setFilteredItems(items);
+  }, [items]);
 
   return (
     <>

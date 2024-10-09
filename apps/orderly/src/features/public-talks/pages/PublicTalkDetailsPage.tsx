@@ -21,16 +21,18 @@ import { useAppState } from "../../../data/zustand/useAppState";
 export default function PublicTalkDetailsPage() {
   const [readonly, setReadonly] = useState(true);
 
-  const { id } = useParams<{ id: string }>();
+  const { week } = useParams<{ week: string }>();
   const {
     canEdit,
     user: { data: userData },
   } = useAppState();
 
-  const { data } = useCongregationScheduleQuery(userData?.congregation_id);
+  const { data: schedule } = useCongregationScheduleQuery(
+    userData?.congregation_id
+  );
   const setStoreProperties = useStore.use.setStoreProperties();
 
-  const details = data?.find((d) => d.week === id);
+  const details = schedule?.find((d) => d.week === week);
 
   const handleCancel = async () => {
     if (details) {
@@ -59,7 +61,7 @@ export default function PublicTalkDetailsPage() {
             {readonly && <IonBackButton></IonBackButton>}
             {!readonly && <IonButton onClick={handleCancel}>Cancel</IonButton>}
           </IonButtons>
-          <IonTitle>{formatToTheocraticWeek(id)}</IonTitle>
+          <IonTitle>{formatToTheocraticWeek(week)}</IonTitle>
           <IonButtons slot="end">
             {readonly && (
               <IonButton onClick={() => setReadonly(false)} disabled={!canEdit}>
