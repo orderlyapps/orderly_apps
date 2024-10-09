@@ -21,7 +21,7 @@ export interface Item {
   component?: ReactNode;
 }
 
-interface AutocompleteProps {
+export interface AutocompleteProps {
   items?: Item[];
   title?: string;
   onSelect: (

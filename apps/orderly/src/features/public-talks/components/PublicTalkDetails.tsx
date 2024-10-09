@@ -6,45 +6,59 @@ import { useAppState } from "../../../data/zustand/useAppState";
 import { formatName } from "../../../util/string/formatName";
 import { useEffect, useState } from "react";
 import { getSearchStringFromObject } from "../../../util/string/getSearchString";
+import { search } from "ionicons/icons";
+import { useOutlinesQuery } from "../queries/useOutlinesQuery";
 
 export function PublicTalkDetails({
   readonly = false,
 }: {
   readonly?: boolean;
 }) {
+  const [items, setItems] = useState<{
+    congregations: Item[];
+    speakers: Item[];
+    outlines: Item[];
+  }>({
+    congregations: [],
+    speakers: [],
+    outlines: [],
+  });
+
   const { setStoreProperties } = useAppState();
-  const [congregations, setCongregations] = useState<Item[]>([]);
   const publicTalkDetails = useStore.use.publicTalkDetails();
 
   const { data: speakersList } = useSpeakersQuery();
+  const { data: outlinesList } = useOutlinesQuery();
 
-  const speakers = speakersList?.map((s) => ({
-    name: formatName(s) || "",
-    id: s.id,
-    component: null,
-    data: s,
-  }));
+  const onCongregationSelect = (e: any) => {
+    setStoreProperties("publicTalkDetails", {
+      home_congregation_id: e.target.value.id,
+      home_congregation_name: e.target.value.name,
+      display_name: null,
+      middle_name: null,
+      first_name: null,
+      last_name: null,
+      outline_id: null,
+      theme: null,
+    });
+  };
 
-  const outlines = speakersList?.map((s) => ({
-    name: s.congregation_name || "",
-    id: s.id,
-    component: null,
-    data: s,
-  }));
-
-  const onSelect = (e: any) => {
-    // const props = {
-    //   onIonInput: (e: any) =>
-    //     setStoreProperties("publicTalkDetails", {
-    //       week: details?.week,
-    //       congregation_id: details?.congregation_id,
-    //       [e.target.name]: e.target.value,
-    //     }),
-    //   clearInput: true,
-    //   readonly,
-    //   className: "ion-text-end",
-    // };
-    setStoreProperties("publicTalkDetails", {});
+  const onSpeakerSelect = (e: any) => {
+    setStoreProperties("publicTalkDetails", {
+      display_name: e.target.value.data.display_name,
+      middle_name: e.target.value.data.middle_name,
+      first_name: e.target.value.data.first_name,
+      last_name: e.target.value.data.last_name,
+      speaker_id: e.target.value.id,
+      outline_id: null,
+      theme: null,
+    });
+  };
+  const onOutlineSelect = (e: any) => {
+    setStoreProperties("publicTalkDetails", {
+      outline_id: e.target.value.id,
+      theme: e.target.value.name,
+    });
   };
 
   useEffect(() => {
@@ -65,15 +79,40 @@ export function PublicTalkDetails({
             }
           )
         : [];
-      setCongregations(congregations);
+
+      const speakers = speakersList?.map((s) => ({
+        name: formatName(s) || "",
+        id: s.id,
+        component: null,
+        data: s,
+        searchString: getSearchStringFromObject(s, [
+          "first_name",
+          "last_name",
+          "middle_name",
+          "display_name",
+          "home_congregation_name",
+        ]),
+      }));
+
+      const outlines = outlinesList?.map((outline) => {
+        return {
+          name: outline.theme,
+          id: outline.id,
+          component: null,
+          data: null,
+          searchString: outline.theme,
+        };
+      });
+
+      setItems({ congregations, speakers, outlines: outlines || [] });
     }
-  }, [speakersList]);
+  }, [speakersList, outlinesList]);
 
   return (
     <>
       <AutocompleteModalItem
-        items={congregations}
-        onSelect={onSelect}
+        items={items.congregations}
+        onSelect={onCongregationSelect}
         title={"Select Congregation"}
         name="home_congregation_id"
         readonly={readonly}
@@ -82,9 +121,9 @@ export function PublicTalkDetails({
         {publicTalkDetails.home_congregation_name}
       </AutocompleteModalItem>
 
-      {/* <AutocompleteModalItem
-        items={speakers}
-        onSelect={onSelect}
+      <AutocompleteModalItem
+        items={items.speakers}
+        onSelect={onSpeakerSelect}
         title={"Select Speaker"}
         name="speaker_id"
         readonly={readonly}
@@ -94,15 +133,15 @@ export function PublicTalkDetails({
       </AutocompleteModalItem>
 
       <AutocompleteModalItem
-        items={outlines}
-        onSelect={onSelect}
+        items={items.outlines}
+        onSelect={onOutlineSelect}
         title={"Select Theme"}
         name="outline_id"
         readonly={readonly}
       >
         <IonLabel>Outline:</IonLabel>
         {publicTalkDetails.theme}
-      </AutocompleteModalItem> */}
+      </AutocompleteModalItem>
     </>
   );
 }

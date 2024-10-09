@@ -170,7 +170,7 @@ export type Database = {
           },
         ]
       }
-      public_talks: {
+      public_talks_speaker: {
         Row: {
           congregation_id: string
           outline_id: string | null

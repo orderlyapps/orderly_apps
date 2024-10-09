@@ -16,7 +16,7 @@ const initialState = {
   theme: "light" as "dark" | "light" | "auto",
 };
 
-type StoreState = typeof initialState;
+export type StoreState = typeof initialState;
 
 type StoreActions = {
   resetStore: () => void;

@@ -17,6 +17,7 @@ import { useStore } from "../../../data/zustand/useStore";
 import { PublicTalkDetails } from "../components/PublicTalkDetails";
 import { formatToTheocraticWeek } from "../../../util/dates/formatToTheocraticWeek";
 import { useAppState } from "../../../data/zustand/useAppState";
+import { useUpsertPublicTalkAssignmentMutation } from "../queries/useUpsertPublicTalkAssignmentMutation";
 
 export default function PublicTalkDetailsPage() {
   const [readonly, setReadonly] = useState(true);
@@ -31,6 +32,9 @@ export default function PublicTalkDetailsPage() {
     userData?.congregation_id
   );
   const setStoreProperties = useStore.use.setStoreProperties();
+  const publicTalkDetails = useStore.use.publicTalkDetails();
+
+  const { mutate } = useUpsertPublicTalkAssignmentMutation();
 
   const details = schedule?.find((d) => d.week === week);
 
@@ -42,7 +46,8 @@ export default function PublicTalkDetailsPage() {
   };
 
   function handleUpdate(): void {
-    throw new Error("Function not implemented.");
+    mutate(publicTalkDetails);
+    setReadonly(true);
   }
 
   useEffect(() => {
@@ -51,6 +56,10 @@ export default function PublicTalkDetailsPage() {
       return;
     }
     setStoreProperties("publicTalkDetails", "reset");
+    setStoreProperties("publicTalkDetails", {
+      week,
+      congregation_id: userData?.congregation_id,
+    });
   }, [details]);
 
   return (
