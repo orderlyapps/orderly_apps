@@ -1,16 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../../../data/supabase/supabase-client";
 import { StoreState } from "../../../data/zustand/useStore";
-import { scheduleKeys } from "../../schedule/queries/useSchedule";
 
-async function upsertAssignment({
+async function upsertData({
   week,
   speaker_id,
   congregation_id,
   outline_id,
 }: StoreState["publicTalkDetails"]) {
   const { data, error } = await supabase
-    .from("public_talks_speaker")
+    .from("public_talk_assignments")
     .upsert({ speaker_id, congregation_id, outline_id, week } as any)
     .select()
     .single();
@@ -24,11 +23,11 @@ async function upsertAssignment({
 export const useUpsertPublicTalkAssignmentMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (person: StoreState["publicTalkDetails"]) =>
-      upsertAssignment(person),
-    onSuccess: (person) => {
+    mutationFn: (publicTalkDetails: StoreState["publicTalkDetails"]) =>
+      upsertData(publicTalkDetails),
+    onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: scheduleKeys.list(person.congregation_id || ""),
+        queryKey: ["public_talk_assignment_details"],
       });
     },
   });

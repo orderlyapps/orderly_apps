@@ -12,19 +12,18 @@ import {
 import { Suspense } from "react";
 import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import { getScheduleDates } from "../../../util/dates/getScheduleDates";
-import { useCongregationScheduleQuery } from "../../schedule/queries/useSchedule";
-import { useSessionQuery } from "../../auth/queries/useSession";
-import { usePublisherQuery } from "../../people/queries/usePublisherQuery";
 import { TheocraticWeekItem } from "../../schedule/components/TheocraticWeekItem";
 import { formatName } from "../../../util/string/formatName";
 import { PATHS } from "../../../app/generated/util/paths";
-import { wallet } from "ionicons/icons";
+import { usePublicTalkAssignmentDetailsQuery } from "../queries/usePublicTalkAssignmentDetailsQuery";
+import { useAppState } from "../../../data/zustand/useAppState";
 
 export default function PublicTalksPage() {
-  const { data } = useSessionQuery();
-  const { data: publisher } = usePublisherQuery(data?.user?.id);
-  const { data: schedule } = useCongregationScheduleQuery(
-    publisher?.congregation_id
+  const {
+    user: { data: user },
+  } = useAppState();
+  const { data: publicTalkAssignments } = usePublicTalkAssignmentDetailsQuery(
+    user?.congregation_id
   );
 
   return (
@@ -40,14 +39,16 @@ export default function PublicTalksPage() {
       <IonContent>
         <Suspense fallback={<LoadingSpinner />}>
           <IonList>
-            {getScheduleDates().map((w, index) => {
-              const weekDetails = schedule?.find(({ week }) => w.week === week);
+            {getScheduleDates().map((date, index) => {
+              const weekDetails = publicTalkAssignments?.find(
+                ({ week }) => date.week === week
+              );
               return (
                 <TheocraticWeekItem
                   key={index}
-                  week={w}
+                  week={date}
                   index={index}
-                  routerLink={PATHS.public_talk_details + `/${w.week}`}
+                  routerLink={PATHS.public_talk_details + `/${date.week}`}
                 >
                   <p>
                     <strong>Speaker: </strong>

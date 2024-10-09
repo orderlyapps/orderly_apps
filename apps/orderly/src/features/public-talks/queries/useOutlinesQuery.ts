@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../../../data/supabase/supabase-client";
-import { outlines } from "./useSpeakers";
 
-async function getOutlines() {
+async function getData() {
   const { data, error } = await supabase.from("outlines").select("*");
 
   if (error) {
@@ -14,6 +13,6 @@ async function getOutlines() {
 
 export const useOutlinesQuery = () =>
   useQuery({
-    queryKey: outlines.all,
-    queryFn: () => getOutlines(),
+    queryKey: ["outlines"],
+    queryFn: () => getData(),
   });

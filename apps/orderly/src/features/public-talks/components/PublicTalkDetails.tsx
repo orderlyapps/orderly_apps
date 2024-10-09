@@ -2,11 +2,9 @@ import { IonLabel } from "@ionic/react";
 import { useStore } from "../../../data/zustand/useStore";
 import AutocompleteModalItem, { Item } from "../../../ui/AutocompleteModalItem";
 import { useSpeakersQuery } from "../queries/useSpeakersQuery";
-import { useAppState } from "../../../data/zustand/useAppState";
 import { formatName } from "../../../util/string/formatName";
 import { useEffect, useState } from "react";
 import { getSearchStringFromObject } from "../../../util/string/getSearchString";
-import { search } from "ionicons/icons";
 import { useOutlinesQuery } from "../queries/useOutlinesQuery";
 
 export function PublicTalkDetails({
@@ -14,26 +12,20 @@ export function PublicTalkDetails({
 }: {
   readonly?: boolean;
 }) {
-  const [items, setItems] = useState<{
-    congregations: Item[];
-    speakers: Item[];
-    outlines: Item[];
-  }>({
-    congregations: [],
-    speakers: [],
-    outlines: [],
-  });
+  const [congregations, setCongregations] = useState<Item[]>([]);
+  const [speakers, setSpeakers] = useState<Item[]>([]);
+  const [outlines, setOutlines] = useState<Item[]>([]);
 
-  const { setStoreProperties } = useAppState();
   const publicTalkDetails = useStore.use.publicTalkDetails();
+  const setStoreProperties = useStore.use.setStoreProperties();
 
   const { data: speakersList } = useSpeakersQuery();
   const { data: outlinesList } = useOutlinesQuery();
 
   const onCongregationSelect = (e: any) => {
     setStoreProperties("publicTalkDetails", {
-      home_congregation_id: e.target.value.id,
-      home_congregation_name: e.target.value.name,
+      speakers_congregation_id: e.target.value.id,
+      speakers_congregation_name: e.target.value.name,
       display_name: null,
       middle_name: null,
       first_name: null,
@@ -104,28 +96,28 @@ export function PublicTalkDetails({
         };
       });
 
-      setItems({ congregations, speakers, outlines: outlines || [] });
+      setCongregations(congregations);
+      setSpeakers(speakers);
+      setOutlines(outlines || []);
     }
   }, [speakersList, outlinesList]);
 
   return (
     <>
       <AutocompleteModalItem
-        items={items.congregations}
+        items={congregations}
         onSelect={onCongregationSelect}
         title={"Select Congregation"}
-        name="home_congregation_id"
         readonly={readonly}
       >
         <IonLabel>Congregation:</IonLabel>
-        {publicTalkDetails.home_congregation_name}
+        {publicTalkDetails.speakers_congregation_name}
       </AutocompleteModalItem>
 
       <AutocompleteModalItem
-        items={items.speakers}
+        items={speakers}
         onSelect={onSpeakerSelect}
         title={"Select Speaker"}
-        name="speaker_id"
         readonly={readonly}
       >
         <IonLabel>Speaker:</IonLabel>
@@ -133,10 +125,9 @@ export function PublicTalkDetails({
       </AutocompleteModalItem>
 
       <AutocompleteModalItem
-        items={items.outlines}
+        items={outlines}
         onSelect={onOutlineSelect}
         title={"Select Theme"}
-        name="outline_id"
         readonly={readonly}
       >
         <IonLabel>Outline:</IonLabel>

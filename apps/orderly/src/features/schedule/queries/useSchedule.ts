@@ -9,16 +9,9 @@ export const scheduleKeys = {
   detail: (id?: string | null) => [...scheduleKeys.details(), id] as const,
 };
 
-
-
-
-
-
-
-
 async function getCongregationSchedule(congregation_id: string) {
   const { data, error } = await supabase
-    .from("public_talk_details")
+    .from("public_talk_assignment_details")
     .select()
     .eq("congregation_id", congregation_id);
 
@@ -26,10 +19,10 @@ async function getCongregationSchedule(congregation_id: string) {
     throw new Error(error.message);
   }
 
-  return data ;
+  return data;
 }
 
-export const useCongregationScheduleQuery = (
+export const useCongregationScheduleQueryxxx = (
   congregation_id: string | null | undefined
 ) =>
   useQuery({

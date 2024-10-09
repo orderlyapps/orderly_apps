@@ -7,7 +7,7 @@ import { Publisher } from "../../features/people/queries/usePeople";
 
 const initialState = {
   personDetails: {} as Publisher,
-  publicTalkDetails: {} as Database["public"]["Views"]["public_talk_details"]["Row"],
+  publicTalkDetails: {} as Database["public"]["Views"]["public_talk_assignment_details"]["Row"],
   user: {} as Publisher,
   congregationDetails:
     {} as Database["public"]["Tables"]["congregations"]["Update"],

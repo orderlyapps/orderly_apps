@@ -12,12 +12,12 @@ import {
 import { Suspense, useEffect, useState } from "react";
 import { LoadingSpinner } from "../../../ui/LoadingSpinner";
 import { useParams } from "react-router";
-import { useCongregationScheduleQuery } from "../../schedule/queries/useSchedule";
 import { useStore } from "../../../data/zustand/useStore";
 import { PublicTalkDetails } from "../components/PublicTalkDetails";
 import { formatToTheocraticWeek } from "../../../util/dates/formatToTheocraticWeek";
 import { useAppState } from "../../../data/zustand/useAppState";
 import { useUpsertPublicTalkAssignmentMutation } from "../queries/useUpsertPublicTalkAssignmentMutation";
+import { usePublicTalkAssignmentDetailsQuery } from "../queries/usePublicTalkAssignmentDetailsQuery";
 
 export default function PublicTalkDetailsPage() {
   const [readonly, setReadonly] = useState(true);
@@ -26,12 +26,12 @@ export default function PublicTalkDetailsPage() {
   const {
     canEdit,
     user: { data: userData },
+    setStoreProperties,
   } = useAppState();
 
-  const { data: schedule } = useCongregationScheduleQuery(
+  const { data: schedule } = usePublicTalkAssignmentDetailsQuery(
     userData?.congregation_id
   );
-  const setStoreProperties = useStore.use.setStoreProperties();
   const publicTalkDetails = useStore.use.publicTalkDetails();
 
   const { mutate } = useUpsertPublicTalkAssignmentMutation();

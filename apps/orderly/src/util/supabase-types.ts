@@ -170,7 +170,7 @@ export type Database = {
           },
         ]
       }
-      public_talks_speaker: {
+      public_talk_assignments: {
         Row: {
           congregation_id: string
           outline_id: string | null
@@ -264,7 +264,7 @@ export type Database = {
           },
         ]
       }
-      speaker_outlines: {
+      speakers_outlines: {
         Row: {
           outline_id: string
           speaker_id: string
@@ -310,25 +310,25 @@ export type Database = {
       }
     }
     Views: {
-      public_talk_details: {
+      public_talk_assignment_details: {
         Row: {
           congregation_id: string | null
           congregation_name: string | null
           display_name: string | null
           first_name: string | null
-          home_congregation_id: string | null
-          home_congregation_name: string | null
           last_name: string | null
           middle_name: string | null
           outline_id: string | null
           speaker_id: string | null
+          speakers_congregation_id: string | null
+          speakers_congregation_name: string | null
           theme: string | null
           week: string | null
         }
         Relationships: [
           {
             foreignKeyName: "public_people_congregation_id_fkey"
-            columns: ["home_congregation_id"]
+            columns: ["speakers_congregation_id"]
             isOneToOne: false
             referencedRelation: "congregations"
             referencedColumns: ["id"]
