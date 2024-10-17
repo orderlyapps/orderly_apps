@@ -1,0 +1,24 @@
+{
+  "name": "@repo/shells",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "exports": {
+    "./orderly": {
+      "types": "./src/apps/orderly/Orderly.tsx",
+      "default": "./dist/Orderly.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.62"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "typescript": "^5.3.3"
+  }
+}
