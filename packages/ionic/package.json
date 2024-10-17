@@ -1,12 +1,12 @@
 {
-  "name": "@repo/shells",
+  "name": "@repo/ionic",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "exports": {
-    "./orderly": {
-      "types": "./src/apps/orderly/Orderly.tsx",
-      "default": "./dist/Orderly.js"
+    "./IonTabsApp": {
+      "types": "./src/IonTabsApp.tsx",
+      "default": "./dist/IonTabsApp.js"
     }
   },
   "scripts": {
@@ -18,9 +18,12 @@
     "@types/react": "^18.2.62"
   },
   "dependencies": {
-    "@repo/css": "workspace:^",
-    "@repo/ionic": "workspace:^",
+    "@ionic/react": "^8.0.0",
+    "@ionic/react-router": "^8.0.0",
+    "@types/react-router": "^5.1.20",
+    "ionicons": "^7.0.0",
     "react": "^18.2.0",
+    "react-router": "^5.3.4",
     "typescript": "^5.3.3"
   }
 }

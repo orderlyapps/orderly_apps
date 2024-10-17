@@ -1,0 +1,33 @@
+/* Utility class for vertical centering */
+.center-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Utility class for horizontal centering */
+.center-horizontal {
+  display: flex;
+  justify-content: center;
+}
+
+/* Utility class for both vertical and horizontal centering */
+.center-both {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Alternative method for centering both vertically and horizontally */
+.center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Utility class for full-size element */
+.full-size {
+  width: 100%;
+  height: 100%;
+}

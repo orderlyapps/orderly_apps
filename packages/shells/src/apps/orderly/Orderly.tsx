@@ -1,3 +1,5 @@
-export function Test() {
-  return <div>orderly 2</div>;
+import { IonTabsApp } from "@repo/ionic/IonTabsApp";
+
+export function Orderly() {
+  return <IonTabsApp></IonTabsApp>;
 }

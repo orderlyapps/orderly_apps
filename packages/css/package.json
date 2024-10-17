@@ -1,0 +1,9 @@
+{
+  "name": "@repo/css",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./utilities": "./src/utilities.css"
+  },
+  "scripts": {}
+}
