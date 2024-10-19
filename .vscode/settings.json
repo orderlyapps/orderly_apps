@@ -1,22 +1,22 @@
 {
-  "files.exclude": {
-    // "**/dist": true,
-    "**/dev-dist": true,
-    // "**/apps/templates": true,
+  // "files.exclude": {
+  //   "**/dist": true,
+  //   "**/dev-dist": true,
+  //   // "**/apps/templates": true,
 
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/Thumbs.db": true,
+  //   "**/.git": true,
+  //   "**/.svn": true,
+  //   "**/.hg": true,
+  //   "**/CVS": true,
+  //   "**/.DS_Store": true,
+  //   "**/Thumbs.db": true,
 
-    // FOLDERS
-    "**/.turbo": true,
-    "**/node_modules": true,
-    "**/.wrangler": true
-    // "**/packages": true
-  },
+  //   // FOLDERS
+  //   "**/.turbo": true,
+  //   "**/node_modules": true,
+  //   "**/.wrangler": true
+  //   // "**/packages": true
+  // },
   "commands.workspaceCommands": {},
   "search.exclude": {
     "**/.vscode": false,
@@ -46,5 +46,29 @@
     "congregations",
     "reminders",
     "public talks"
-  ]
+  ],
+  "files.exclude": {
+    "**/.git": false,
+    "**/.svn": false,
+    "**/.hg": false,
+    "**/CVS": false,
+    "**/.DS_Store": false,
+    "**/Thumbs.db": false,
+    "**/.turbo": false,
+    "**/node_modules": false,
+    "**/.wrangler": false,
+    "**/dist": false
+  },
+  "explorerExclude.backup": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.turbo": true,
+    "**/node_modules": true,
+    "**/.wrangler": true,
+    "**/dist": true
+  }
 }

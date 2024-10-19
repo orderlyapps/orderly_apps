@@ -1,12 +1,12 @@
 {
-  "name": "@repo/shells",
+  "name": "@repo/feature",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "exports": {
-    "./orderly": {
-      "types": "./src/apps/orderly/Orderly.tsx",
-      "default": "./dist/Orderly.js"
+    "./ORDERLY_ROUTES": {
+      "types": "./src/generated/orderly/routes.ts",
+      "default": "./dist/routes.js"
     }
   },
   "scripts": {
@@ -19,10 +19,13 @@
   },
   "dependencies": {
     "@ionic/react": "^8.0.0",
-    "@repo/css": "workspace:^",
-    "@repo/feature": "workspace:^",
+    "@ionic/react-router": "^8.0.0",
     "@repo/ionic": "workspace:^",
+    "@repo/supabase": "workspace:^",
+    "@types/react-router": "^5.1.20",
+    "ionicons": "^7.4.0",
     "react": "^18.2.0",
+    "react-router": "^5.3.4",
     "typescript": "^5.3.3"
   }
 }

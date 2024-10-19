@@ -1,0 +1,16 @@
+import { Ion{{ pascalCase type }} } from "@ionic/react";
+import { path, Param } from "./path";
+import { ComponentProps } from "react"
+
+export function {{pascalCase name}}PageLink{{ pascalCase type }}({
+  param, 
+  ...props
+}: ComponentProps<typeof Ion{{ pascalCase type }}> & { param?: Param }) {
+  return (
+    <Ion{{ pascalCase type }} routerLink={path(param)} {...props}>
+      {props.children || "{{titleCase name}}"}
+    </Ion{{ pascalCase type }}>
+  );
+}
+
+// generated

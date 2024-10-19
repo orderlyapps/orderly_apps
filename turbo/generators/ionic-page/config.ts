@@ -1,4 +1,5 @@
 import { PlopTypes } from "@turbo/gen";
+import { apps, newGeneratedPagesPath, tabs } from "../settings";
 
 export const ionicPage = (plop: PlopTypes.NodePlopAPI) => {
   return plop.setGenerator("Ionic Page", {
@@ -8,54 +9,103 @@ export const ionicPage = (plop: PlopTypes.NodePlopAPI) => {
         type: "list",
         name: "app",
         message: "Which app would you like to add the page to?",
-        choices: ["orderly"],
+        choices: apps,
       },
       {
         type: "list",
         name: "tab",
         message: "Which tab would you like to add the page to?",
-        choices: ["home", "settings"],
+        choices: tabs,
       },
       {
         type: "input",
         name: "name",
-        message: "What is the name of the page?",
+        message: "What would you like to name the page?",
       },
     ],
     actions: [
       {
         type: "add",
-        path: "apps/{{kebabCase app}}/src/app/generated/pages/{{kebabCase tab}}/{{pascalCase name}}Page.tsx",
-        templateFile: "ionic-page/ionic-page.hbs",
+        path: `${newGeneratedPagesPath}{{kebabCase app}}/pages/{{kebabCase name}}/{{pascalCase name}}Page.tsx`,
+        templateFile: "ionic-page/page.hbs",
+      },
+
+      // LINKS
+      {
+        type: "add",
+        path: `${newGeneratedPagesPath}{{kebabCase app}}/pages/{{kebabCase name}}/{{pascalCase name}}PageLinkItem.tsx`,
+        templateFile: "ionic-page/link.hbs",
+        data: { type: "item" },
       },
       {
         type: "add",
-        path: "apps/{{kebabCase app}}/src/app/generated/page-links/{{kebabCase tab}}/{{pascalCase name}}PageLinks.tsx",
-        templateFile: "ionic-page/ionic-page-links.hbs",
+        path: `${newGeneratedPagesPath}{{kebabCase app}}/pages/{{kebabCase name}}/{{pascalCase name}}PageLinkButton.tsx`,
+        templateFile: "ionic-page/link.hbs",
+        data: { type: "button" },
       },
       {
-        type: "modify",
-        path: "apps/{{kebabCase app}}/src/app/generated/util/Routes.tsx",
-        pattern: /^(.*"react";)(.*\<\/Route>)/s,
-        template:
-          "$1 " +
-          '\nconst {{pascalCase name}}Page = lazy(() => import("../pages/{{kebabCase tab}}/{{pascalCase name}}Page"));' +
-          "$2" +
-          "\n\n      <Route exact path={ PATHS.{{snakeCase name}} }>\n" +
-          "        <Suspense fallback={<LoadingSpinner />}>\n" +
-          "          <{{pascalCase name}}Page />\n" +
-          "        </Suspense>\n" +
-          "      </Route>",
+        type: "add",
+        path: `${newGeneratedPagesPath}{{kebabCase app}}/pages/{{kebabCase name}}/{{pascalCase name}}PageLinkCard.tsx`,
+        templateFile: "ionic-page/link.hbs",
+        data: { type: "card" },
       },
       {
-        type: "modify",
-        path: "apps/{{kebabCase app}}/src/app/generated/util/paths.ts",
-        pattern: /^(.*\{)(.*)$/s,
-        template:
-          "$1" +
-          '\n\t{{snakeCase name}}: "/{{kebabCase tab}}/{{kebabCase name}}",' +
-          "$2",
+        type: "add",
+        path: `${newGeneratedPagesPath}{{kebabCase app}}/pages/{{kebabCase name}}/{{pascalCase name}}PageLinkFabButton.tsx`,
+        templateFile: "ionic-page/link.hbs",
+        data: { type: "fab button" },
       },
+
+      {
+        type: "add",
+        path: `${newGeneratedPagesPath}{{kebabCase app}}/pages/{{kebabCase name}}/path.ts`,
+        templateFile: "ionic-page/path.hbs",
+      },
+      {
+        type: "append",
+        path: `${newGeneratedPagesPath}{{kebabCase app}}/paths.ts`,
+        pattern: /PATHS = {(?<insertion>)/g,
+        template:
+          '\t{{snakeCase name}}: "/{{kebabCase tab}}/{{kebabCase name}}",',
+      },
+      {
+        type: "append",
+        path: `${newGeneratedPagesPath}{{kebabCase app}}/routes.ts`,
+        pattern: /= \[(?<insertion>)/g,
+        template:
+          " {\n" +
+          "   path: PATHS.{{ snakeCase name }},\n" +
+          "   // tab: 'string',\n" +
+          "   // icon: homeOutline,\n" +
+          "   Component: lazy(\n" +
+          "     () => import('./pages/{{kebabCase name}}/{{pascalCase name}}Page')\n" +
+          "   ),\n" +
+          "   // redirect: true\n" +
+          " },",
+      },
+      // {
+      //   type: "modify",
+      //   path: "apps/{{kebabCase app}}/src/app/generated/util/Routes.tsx",
+      //   pattern: /^(.*"react";)(.*\<\/Route>)/s,
+      //   template:
+      //     "$1 " +
+      //     '\nconst {{pascalCase name}}Page = lazy(() => import("../pages/{{kebabCase tab}}/{{pascalCase name}}Page"));' +
+      //     "$2" +
+      //     "\n\n      <Route exact path={ PATHS.{{kebabCase name}} }>\n" +
+      //     "        <Suspense fallback={<LoadingSpinner />}>\n" +
+      //     "          <{{pascalCase name}}Page />\n" +
+      //     "        </Suspense>\n" +
+      //     "      </Route>",
+      // },
+      // {
+      //   type: "modify",
+      //   path: "apps/{{kebabCase app}}/src/app/generated/util/paths.ts",
+      //   pattern: /^(.*\{)(.*)$/s,
+      //   template:
+      //     "$1" +
+      //     '\n\t{{kebabCase name}}: "/{{kebabCase tab}}/{{kebabCase name}}",' +
+      //     "$2",
+      // },
     ],
   });
 };

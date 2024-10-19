@@ -10,17 +10,10 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router";
 import { homeOutline, settingsOutline } from "ionicons/icons";
-import {
-  IonBackButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
+import { lazy, LazyExoticComponent, Suspense } from "react";
+import { IonLoadingSpinner } from "../ion-loading-spinner/IonLoadingSpinner.js";
 
-import "./ionicInit.js";
+import "../../ionicInit.js";
 
 export const IonTabsApp = ({
   pages = defaultPages,
@@ -34,7 +27,9 @@ export const IonTabsApp = ({
           <IonRouterOutlet>
             {pages.map(({ Component, path }: any, index: number) => (
               <Route exact path={path} key={index}>
-                <Component />
+                <Suspense fallback={<IonLoadingSpinner />}>
+                  <Component />
+                </Suspense>
               </Route>
             ))}
             <Route exact path="/">
@@ -65,45 +60,21 @@ const defaultPages = [
     path: "/home",
     tab: "Home",
     icon: homeOutline,
-    Component: () => (
-      <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonButtons slot="start">
-              <IonBackButton></IonBackButton>
-            </IonButtons>
-            <IonTitle>Home</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>Home</IonContent>
-      </IonPage>
-    ),
+    Component: lazy(() => import("./home.js")),
     redirect: true,
   },
   {
     path: "/settings",
     tab: "Settings",
     icon: settingsOutline,
-    Component: () => (
-      <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonButtons slot="start">
-              <IonBackButton></IonBackButton>
-            </IonButtons>
-            <IonTitle>Settings</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>Settings</IonContent>
-      </IonPage>
-    ),
+    Component: lazy(() => import("./settings.js")),
   },
 ];
 
-type IonTabsAppPage = {
+export type IonTabsAppPage = {
   path: string;
   tab?: string;
-  icon: string;
-  Component: () => JSX.Element;
+  icon?: string;
+  Component: LazyExoticComponent<() => JSX.Element>;
   redirect?: boolean;
 };

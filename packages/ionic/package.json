@@ -4,9 +4,17 @@
   "private": true,
   "license": "MIT",
   "exports": {
+    "./IonLoadingSpinner": {
+      "types": "./src/components/ion-loading-spinner/IonLoadingSpinner.tsx",
+      "default": "./dist/components/ion-loading-spinner/IonLoadingSpinner.js"
+    },
     "./IonTabsApp": {
-      "types": "./src/IonTabsApp.tsx",
-      "default": "./dist/IonTabsApp.js"
+      "types": "./src/components/ion-tabs-app/IonTabsApp.tsx",
+      "default": "./dist/components/ion-tabs-app/IonTabsApp.js"
+    },
+    "./IonAutocompleteSelectModalItem": {
+      "types": "./src/components/ion-autocomplete-select-modal-item/IonAutocompleteSelectModalItem.tsx",
+      "default": "./dist/components/ion-autocomplete-select-modal-item/IonAutocompleteSelectModalItem.js"
     }
   },
   "scripts": {
