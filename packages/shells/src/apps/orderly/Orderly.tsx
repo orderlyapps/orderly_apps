@@ -1,7 +1,11 @@
 import { ORDERLY_ROUTES } from "@repo/feature/ORDERLY_ROUTES";
 import { IonTabsApp } from "@repo/ionic/IonTabsApp";
+import { ReactQueryProvider } from "@repo/react-query/ReactQueryProvider";
 
-console.log("ORDERLY_ROUTES:", ORDERLY_ROUTES);
 export function Orderly() {
-  return <IonTabsApp pages={ORDERLY_ROUTES}></IonTabsApp>;
+  return (
+    <ReactQueryProvider>
+      <IonTabsApp pages={ORDERLY_ROUTES}></IonTabsApp>
+    </ReactQueryProvider>
+  );
 }

@@ -8,9 +8,17 @@
       "types": "./src/supabase-client.ts",
       "default": "./dist/supabase-client.js"
     },
-    "./supabase-types": {
-      "types": "./src/supabase-types.ts",
-      "default": "./dist/supabase-types.js"
+    "./supabase-sign-in": {
+      "types": "./src/supabase-sign-in.ts",
+      "default": "./dist/supabase-sign-in.js"
+    },
+    "./supabase-sign-out": {
+      "types": "./src/supabase-sign-out.ts",
+      "default": "./dist/supabase-sign-out.js"
+    },
+    "./types": {
+      "types": "./src/types.ts",
+      "default": "./dist/types.js"
     }
   },
   "scripts": {

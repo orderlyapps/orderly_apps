@@ -1,0 +1,51 @@
+{
+  "name": "@repo/react-query",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "exports": {
+    "./usePublishersQuery": {
+      "types": "./src/people/usePublishersQuery.ts",
+      "default": "./dist/people/usePublishersQuery.js"
+    },
+    "./useCongregationsQuery": {
+      "types": "./src/congregations/useCongregationsQuery.ts",
+      "default": "./dist/congregations/useCongregationsQuery.js"
+    },
+    "./useOutlinesQuery": {
+      "types": "./src/public-talks/useOutlinesQuery.ts",
+      "default": "./dist/public-talks/useOutlinesQuery.js"
+    },
+    "./useSpeakersQuery": {
+      "types": "./src/public-talks/useSpeakersQuery.ts",
+      "default": "./dist/public-talks/useSpeakersQuery.js"
+    },
+    "./ReactQueryProvider": {
+      "types": "./src/ReactQueryProvider.tsx",
+      "default": "./dist/ReactQueryProvider.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.62",
+    "vite": "^5.4.9"
+  },
+  "dependencies": {
+    "@ionic/react": "^8.0.0",
+    "@ionic/react-router": "^8.0.0",
+    "@repo/ionic": "workspace:^",
+    "@repo/supabase": "workspace:^",
+    "@supabase/supabase-js": "^2.44.4",
+    "@tanstack/react-query": "^5.51.21",
+    "@tanstack/react-query-devtools": "^5.51.21",
+    "@types/react-router": "^5.1.20",
+    "ionicons": "^7.4.0",
+    "react": "^18.2.0",
+    "react-router": "^5.3.4",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "name": "@repo/page-links",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "exports": {
+	"./SpeakersListPageLinkItem": {
+		"types": "./src/orderly/speakers-list/SpeakersListPageLinkItem.tsx",
+		"default": "./dist/orderly/speakers-list/SpeakersListPageLinkItem.js"
+	},
+	"./SpeakersListPageLinkButton": {
+		"types": "./src/orderly/speakers-list/SpeakersListPageLinkButton.tsx",
+		"default": "./dist/orderly/speakers-list/SpeakersListPageLinkButton.js"
+	},
+	"./SpeakersListPageLinkCard": {
+		"types": "./src/orderly/speakers-list/SpeakersListPageLinkCard.tsx",
+		"default": "./dist/orderly/speakers-list/SpeakersListPageLinkCard.js"
+	},
+	"./SpeakersListPageLinkFabButton": {
+		"types": "./src/orderly/speakers-list/SpeakersListPageLinkFabButton.tsx",
+		"default": "./dist/orderly/speakers-list/SpeakersListPageLinkFabButton.js"
+	},
+	"./PublishersListPageLinkItem": {
+		"types": "./src/orderly/publishers-list/PublishersListPageLinkItem.tsx",
+		"default": "./dist/orderly/publishers-list/PublishersListPageLinkItem.js"
+	},
+	"./PublishersListPageLinkButton": {
+		"types": "./src/orderly/publishers-list/PublishersListPageLinkButton.tsx",
+		"default": "./dist/orderly/publishers-list/PublishersListPageLinkButton.js"
+	},
+	"./PublishersListPageLinkCard": {
+		"types": "./src/orderly/publishers-list/PublishersListPageLinkCard.tsx",
+		"default": "./dist/orderly/publishers-list/PublishersListPageLinkCard.js"
+	},
+	"./PublishersListPageLinkFabButton": {
+		"types": "./src/orderly/publishers-list/PublishersListPageLinkFabButton.tsx",
+		"default": "./dist/orderly/publishers-list/PublishersListPageLinkFabButton.js"
+	},
+	"./CongregationsListPageLinkItem": {
+		"types": "./src/orderly/congregations-list/CongregationsListPageLinkItem.tsx",
+		"default": "./dist/orderly/congregations-list/CongregationsListPageLinkItem.js"
+	},
+	"./CongregationsListPageLinkButton": {
+		"types": "./src/orderly/congregations-list/CongregationsListPageLinkButton.tsx",
+		"default": "./dist/orderly/congregations-list/CongregationsListPageLinkButton.js"
+	},
+	"./CongregationsListPageLinkCard": {
+		"types": "./src/orderly/congregations-list/CongregationsListPageLinkCard.tsx",
+		"default": "./dist/orderly/congregations-list/CongregationsListPageLinkCard.js"
+	},
+	"./CongregationsListPageLinkFabButton": {
+		"types": "./src/orderly/congregations-list/CongregationsListPageLinkFabButton.tsx",
+		"default": "./dist/orderly/congregations-list/CongregationsListPageLinkFabButton.js"
+	},
+	"./OutlinesListPageLinkItem": {
+		"types": "./src/orderly/outlines-list/OutlinesListPageLinkItem.tsx",
+		"default": "./dist/orderly/outlines-list/OutlinesListPageLinkItem.js"
+	},
+	"./OutlinesListPageLinkButton": {
+		"types": "./src/orderly/outlines-list/OutlinesListPageLinkButton.tsx",
+		"default": "./dist/orderly/outlines-list/OutlinesListPageLinkButton.js"
+	},
+	"./OutlinesListPageLinkCard": {
+		"types": "./src/orderly/outlines-list/OutlinesListPageLinkCard.tsx",
+		"default": "./dist/orderly/outlines-list/OutlinesListPageLinkCard.js"
+	},
+	"./OutlinesListPageLinkFabButton": {
+		"types": "./src/orderly/outlines-list/OutlinesListPageLinkFabButton.tsx",
+		"default": "./dist/orderly/outlines-list/OutlinesListPageLinkFabButton.js"
+	},
+	"./OneTwoPageLinkItem": {
+		"types": "./src/orderly/one-two/OneTwoPageLinkItem.tsx",
+		"default": "./dist/orderly/one-two/OneTwoPageLinkItem.js"
+	},
+	"./OneTwoPageLinkButton": {
+		"types": "./src/orderly/one-two/OneTwoPageLinkButton.tsx",
+		"default": "./dist/orderly/one-two/OneTwoPageLinkButton.js"
+	},
+	"./OneTwoPageLinkCard": {
+		"types": "./src/orderly/one-two/OneTwoPageLinkCard.tsx",
+		"default": "./dist/orderly/one-two/OneTwoPageLinkCard.js"
+	},
+	"./OneTwoPageLinkFabButton": {
+		"types": "./src/orderly/one-two/OneTwoPageLinkFabButton.tsx",
+		"default": "./dist/orderly/one-two/OneTwoPageLinkFabButton.js"
+	},
+    "./ORDERLY_PATHS": {
+      "types": "./src/orderly/ORDERLY_PATHS.ts",
+      "default": "./dist/orderly/ORDERLY_PATHS.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.62",
+    "vite": "^5.4.9"
+  },
+  "dependencies": {
+    "@ionic/react": "^8.0.0",
+    "@ionic/react-router": "^8.0.0",
+    "@repo/ionic": "workspace:^",
+    "@repo/supabase": "workspace:^",
+    "@supabase/supabase-js": "^2.44.4",
+    "@tanstack/react-query": "^5.51.21",
+    "@tanstack/react-query-devtools": "^5.51.21",
+    "@types/react-router": "^5.1.20",
+    "ionicons": "^7.4.0",
+    "react": "^18.2.0",
+    "react-router": "^5.3.4",
+    "typescript": "^5.3.3"
+  }
+}

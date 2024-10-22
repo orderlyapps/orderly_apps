@@ -9,7 +9,10 @@ import {
 } from "@ionic/react";
 import { Suspense } from "react";
 import { IonLoadingSpinner } from "@repo/ionic/IonLoadingSpinner";
-import { DeletePageLinkItem } from "../delete/DeletePageLinkItem";
+import { OutlinesListPageLinkItem } from "@repo/page-links/OutlinesListPageLinkItem";
+import { CongregationsListPageLinkItem } from "@repo/page-links/CongregationsListPageLinkItem";
+import { PublishersListPageLinkItem } from "@repo/page-links/PublishersListPageLinkItem";
+import { SpeakersListPageLinkItem } from "@repo/page-links/SpeakersListPageLinkItem";
 
 export default function HomePage() {
   return (
@@ -24,8 +27,10 @@ export default function HomePage() {
       </IonHeader>
       <IonContent>
         <Suspense fallback={<IonLoadingSpinner />}>
-          <DeletePageLinkItem param={"check"}></DeletePageLinkItem>
-          <div className="full centered">Home</div>
+          <OutlinesListPageLinkItem></OutlinesListPageLinkItem>
+          <CongregationsListPageLinkItem></CongregationsListPageLinkItem>
+          <PublishersListPageLinkItem></PublishersListPageLinkItem>
+          <SpeakersListPageLinkItem></SpeakersListPageLinkItem>
         </Suspense>
       </IonContent>
     </IonPage>

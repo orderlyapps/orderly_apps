@@ -22,6 +22,8 @@
     "@repo/css": "workspace:^",
     "@repo/feature": "workspace:^",
     "@repo/ionic": "workspace:^",
+    "@repo/react-query": "workspace:^",
+    "@repo/supabase": "workspace:^",
     "react": "^18.2.0",
     "typescript": "^5.3.3"
   }

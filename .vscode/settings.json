@@ -48,18 +48,6 @@
     "public talks"
   ],
   "files.exclude": {
-    "**/.git": false,
-    "**/.svn": false,
-    "**/.hg": false,
-    "**/CVS": false,
-    "**/.DS_Store": false,
-    "**/Thumbs.db": false,
-    "**/.turbo": false,
-    "**/node_modules": false,
-    "**/.wrangler": false,
-    "**/dist": false
-  },
-  "explorerExclude.backup": {
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
@@ -69,6 +57,17 @@
     "**/.turbo": true,
     "**/node_modules": true,
     "**/.wrangler": true,
-    "**/dist": true
-  }
+    "**/dist": true,
+    "**/.github": true,
+    "**/eslint-config": true,
+    "**/typescript-config": true,
+    "**/dev-dist": true,
+    "**/templates": true,
+    "**/orderly-2": false,
+    "**/.vscode": true,
+    ".files": true,
+    "supabase": false,
+    "turbo": true
+  },
+  "explorerExclude.backup": {}
 }
