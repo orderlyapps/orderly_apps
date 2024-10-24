@@ -13,5 +13,4 @@ export type Speaker = {
 };
 export type Publisher = { id: string; congregation: Congregation; name: User };
 
-// delete later
-export { Database, Tables } from "./supabase-types";
+export type SupabaseQueries = Publisher | Speaker;

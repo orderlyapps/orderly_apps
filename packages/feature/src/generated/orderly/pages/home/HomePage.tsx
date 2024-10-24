@@ -13,6 +13,9 @@ import { OutlinesListPageLinkItem } from "@repo/page-links/OutlinesListPageLinkI
 import { CongregationsListPageLinkItem } from "@repo/page-links/CongregationsListPageLinkItem";
 import { PublishersListPageLinkItem } from "@repo/page-links/PublishersListPageLinkItem";
 import { SpeakersListPageLinkItem } from "@repo/page-links/SpeakersListPageLinkItem";
+import { PublisherDetailsPageLinkItem } from "@repo/page-links/PublisherDetailsPageLinkItem";
+import { CongregationDetailsPageLinkItem } from "@repo/page-links/CongregationDetailsPageLinkItem";
+import { SpeakerDetailsPageLinkItem } from "@repo/page-links/SpeakerDetailsPageLinkItem";
 
 export default function HomePage() {
   return (
@@ -31,6 +34,9 @@ export default function HomePage() {
           <CongregationsListPageLinkItem></CongregationsListPageLinkItem>
           <PublishersListPageLinkItem></PublishersListPageLinkItem>
           <SpeakersListPageLinkItem></SpeakersListPageLinkItem>
+          <PublisherDetailsPageLinkItem></PublisherDetailsPageLinkItem>
+          <CongregationDetailsPageLinkItem></CongregationDetailsPageLinkItem>
+          <SpeakerDetailsPageLinkItem></SpeakerDetailsPageLinkItem>
         </Suspense>
       </IonContent>
     </IonPage>

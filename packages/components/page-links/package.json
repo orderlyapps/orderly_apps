@@ -1,115 +1,176 @@
 {
-  "name": "@repo/page-links",
-  "version": "0.0.0",
-  "private": true,
-  "license": "MIT",
-  "exports": {
-	"./SpeakersListPageLinkItem": {
-		"types": "./src/orderly/speakers-list/SpeakersListPageLinkItem.tsx",
-		"default": "./dist/orderly/speakers-list/SpeakersListPageLinkItem.js"
+	"name": "@repo/page-links",
+	"version": "0.0.0",
+	"private": true,
+	"license": "MIT",
+	"exports": {
+	"./useSpeakerDetailsPageParams": {
+		"types": "./src/orderly/speaker-details/useSpeakerDetailsPageParams.ts",
+		"default": "./dist/orderly/speaker-details/useSpeakerDetailsPageParams.js"
 	},
-	"./SpeakersListPageLinkButton": {
-		"types": "./src/orderly/speakers-list/SpeakersListPageLinkButton.tsx",
-		"default": "./dist/orderly/speakers-list/SpeakersListPageLinkButton.js"
+	"./SpeakerDetailsPageLinkItem": {
+		"types": "./src/orderly/speaker-details/SpeakerDetailsPageLinkItem.tsx",
+		"default": "./dist/orderly/speaker-details/SpeakerDetailsPageLinkItem.js"
 	},
-	"./SpeakersListPageLinkCard": {
-		"types": "./src/orderly/speakers-list/SpeakersListPageLinkCard.tsx",
-		"default": "./dist/orderly/speakers-list/SpeakersListPageLinkCard.js"
+	"./SpeakerDetailsPageLinkButton": {
+		"types": "./src/orderly/speaker-details/SpeakerDetailsPageLinkButton.tsx",
+		"default": "./dist/orderly/speaker-details/SpeakerDetailsPageLinkButton.js"
 	},
-	"./SpeakersListPageLinkFabButton": {
-		"types": "./src/orderly/speakers-list/SpeakersListPageLinkFabButton.tsx",
-		"default": "./dist/orderly/speakers-list/SpeakersListPageLinkFabButton.js"
+	"./SpeakerDetailsPageLinkCard": {
+		"types": "./src/orderly/speaker-details/SpeakerDetailsPageLinkCard.tsx",
+		"default": "./dist/orderly/speaker-details/SpeakerDetailsPageLinkCard.js"
 	},
-	"./PublishersListPageLinkItem": {
-		"types": "./src/orderly/publishers-list/PublishersListPageLinkItem.tsx",
-		"default": "./dist/orderly/publishers-list/PublishersListPageLinkItem.js"
+	"./SpeakerDetailsPageLinkFabButton": {
+		"types": "./src/orderly/speaker-details/SpeakerDetailsPageLinkFabButton.tsx",
+		"default": "./dist/orderly/speaker-details/SpeakerDetailsPageLinkFabButton.js"
 	},
-	"./PublishersListPageLinkButton": {
-		"types": "./src/orderly/publishers-list/PublishersListPageLinkButton.tsx",
-		"default": "./dist/orderly/publishers-list/PublishersListPageLinkButton.js"
+	"./useCongregationDetailsPageParams": {
+		"types": "./src/orderly/congregation-details/useCongregationDetailsPageParams.ts",
+		"default": "./dist/orderly/congregation-details/useCongregationDetailsPageParams.js"
 	},
-	"./PublishersListPageLinkCard": {
-		"types": "./src/orderly/publishers-list/PublishersListPageLinkCard.tsx",
-		"default": "./dist/orderly/publishers-list/PublishersListPageLinkCard.js"
+	"./CongregationDetailsPageLinkItem": {
+		"types": "./src/orderly/congregation-details/CongregationDetailsPageLinkItem.tsx",
+		"default": "./dist/orderly/congregation-details/CongregationDetailsPageLinkItem.js"
 	},
-	"./PublishersListPageLinkFabButton": {
-		"types": "./src/orderly/publishers-list/PublishersListPageLinkFabButton.tsx",
-		"default": "./dist/orderly/publishers-list/PublishersListPageLinkFabButton.js"
+	"./CongregationDetailsPageLinkButton": {
+		"types": "./src/orderly/congregation-details/CongregationDetailsPageLinkButton.tsx",
+		"default": "./dist/orderly/congregation-details/CongregationDetailsPageLinkButton.js"
 	},
-	"./CongregationsListPageLinkItem": {
-		"types": "./src/orderly/congregations-list/CongregationsListPageLinkItem.tsx",
-		"default": "./dist/orderly/congregations-list/CongregationsListPageLinkItem.js"
+	"./CongregationDetailsPageLinkCard": {
+		"types": "./src/orderly/congregation-details/CongregationDetailsPageLinkCard.tsx",
+		"default": "./dist/orderly/congregation-details/CongregationDetailsPageLinkCard.js"
 	},
-	"./CongregationsListPageLinkButton": {
-		"types": "./src/orderly/congregations-list/CongregationsListPageLinkButton.tsx",
-		"default": "./dist/orderly/congregations-list/CongregationsListPageLinkButton.js"
+	"./CongregationDetailsPageLinkFabButton": {
+		"types": "./src/orderly/congregation-details/CongregationDetailsPageLinkFabButton.tsx",
+		"default": "./dist/orderly/congregation-details/CongregationDetailsPageLinkFabButton.js"
 	},
-	"./CongregationsListPageLinkCard": {
-		"types": "./src/orderly/congregations-list/CongregationsListPageLinkCard.tsx",
-		"default": "./dist/orderly/congregations-list/CongregationsListPageLinkCard.js"
+		"./usePublisherDetailsPageParams": {
+			"types": "./src/orderly/publisher-details/usePublisherDetailsPageParams.ts",
+			"default": "./dist/orderly/publisher-details/usePublisherDetailsPageParams.js"
+		},
+		"./PublisherDetailsPageLinkItem": {
+			"types": "./src/orderly/publisher-details/PublisherDetailsPageLinkItem.tsx",
+			"default": "./dist/orderly/publisher-details/PublisherDetailsPageLinkItem.js"
+		},
+		"./PublisherDetailsPageLinkButton": {
+			"types": "./src/orderly/publisher-details/PublisherDetailsPageLinkButton.tsx",
+			"default": "./dist/orderly/publisher-details/PublisherDetailsPageLinkButton.js"
+		},
+		"./PublisherDetailsPageLinkCard": {
+			"types": "./src/orderly/publisher-details/PublisherDetailsPageLinkCard.tsx",
+			"default": "./dist/orderly/publisher-details/PublisherDetailsPageLinkCard.js"
+		},
+		"./PublisherDetailsPageLinkFabButton": {
+			"types": "./src/orderly/publisher-details/PublisherDetailsPageLinkFabButton.tsx",
+			"default": "./dist/orderly/publisher-details/PublisherDetailsPageLinkFabButton.js"
+		},
+		"./SpeakersListPageLinkItem": {
+			"types": "./src/orderly/speakers-list/SpeakersListPageLinkItem.tsx",
+			"default": "./dist/orderly/speakers-list/SpeakersListPageLinkItem.js"
+		},
+		"./SpeakersListPageLinkButton": {
+			"types": "./src/orderly/speakers-list/SpeakersListPageLinkButton.tsx",
+			"default": "./dist/orderly/speakers-list/SpeakersListPageLinkButton.js"
+		},
+		"./SpeakersListPageLinkCard": {
+			"types": "./src/orderly/speakers-list/SpeakersListPageLinkCard.tsx",
+			"default": "./dist/orderly/speakers-list/SpeakersListPageLinkCard.js"
+		},
+		"./SpeakersListPageLinkFabButton": {
+			"types": "./src/orderly/speakers-list/SpeakersListPageLinkFabButton.tsx",
+			"default": "./dist/orderly/speakers-list/SpeakersListPageLinkFabButton.js"
+		},
+		"./PublishersListPageLinkItem": {
+			"types": "./src/orderly/publishers-list/PublishersListPageLinkItem.tsx",
+			"default": "./dist/orderly/publishers-list/PublishersListPageLinkItem.js"
+		},
+		"./PublishersListPageLinkButton": {
+			"types": "./src/orderly/publishers-list/PublishersListPageLinkButton.tsx",
+			"default": "./dist/orderly/publishers-list/PublishersListPageLinkButton.js"
+		},
+		"./PublishersListPageLinkCard": {
+			"types": "./src/orderly/publishers-list/PublishersListPageLinkCard.tsx",
+			"default": "./dist/orderly/publishers-list/PublishersListPageLinkCard.js"
+		},
+		"./PublishersListPageLinkFabButton": {
+			"types": "./src/orderly/publishers-list/PublishersListPageLinkFabButton.tsx",
+			"default": "./dist/orderly/publishers-list/PublishersListPageLinkFabButton.js"
+		},
+		"./CongregationsListPageLinkItem": {
+			"types": "./src/orderly/congregations-list/CongregationsListPageLinkItem.tsx",
+			"default": "./dist/orderly/congregations-list/CongregationsListPageLinkItem.js"
+		},
+		"./CongregationsListPageLinkButton": {
+			"types": "./src/orderly/congregations-list/CongregationsListPageLinkButton.tsx",
+			"default": "./dist/orderly/congregations-list/CongregationsListPageLinkButton.js"
+		},
+		"./CongregationsListPageLinkCard": {
+			"types": "./src/orderly/congregations-list/CongregationsListPageLinkCard.tsx",
+			"default": "./dist/orderly/congregations-list/CongregationsListPageLinkCard.js"
+		},
+		"./CongregationsListPageLinkFabButton": {
+			"types": "./src/orderly/congregations-list/CongregationsListPageLinkFabButton.tsx",
+			"default": "./dist/orderly/congregations-list/CongregationsListPageLinkFabButton.js"
+		},
+		"./OutlinesListPageLinkItem": {
+			"types": "./src/orderly/outlines-list/OutlinesListPageLinkItem.tsx",
+			"default": "./dist/orderly/outlines-list/OutlinesListPageLinkItem.js"
+		},
+		"./OutlinesListPageLinkButton": {
+			"types": "./src/orderly/outlines-list/OutlinesListPageLinkButton.tsx",
+			"default": "./dist/orderly/outlines-list/OutlinesListPageLinkButton.js"
+		},
+		"./OutlinesListPageLinkCard": {
+			"types": "./src/orderly/outlines-list/OutlinesListPageLinkCard.tsx",
+			"default": "./dist/orderly/outlines-list/OutlinesListPageLinkCard.js"
+		},
+		"./OutlinesListPageLinkFabButton": {
+			"types": "./src/orderly/outlines-list/OutlinesListPageLinkFabButton.tsx",
+			"default": "./dist/orderly/outlines-list/OutlinesListPageLinkFabButton.js"
+		},
+		"./OneTwoPageLinkItem": {
+			"types": "./src/orderly/one-two/OneTwoPageLinkItem.tsx",
+			"default": "./dist/orderly/one-two/OneTwoPageLinkItem.js"
+		},
+		"./OneTwoPageLinkButton": {
+			"types": "./src/orderly/one-two/OneTwoPageLinkButton.tsx",
+			"default": "./dist/orderly/one-two/OneTwoPageLinkButton.js"
+		},
+		"./OneTwoPageLinkCard": {
+			"types": "./src/orderly/one-two/OneTwoPageLinkCard.tsx",
+			"default": "./dist/orderly/one-two/OneTwoPageLinkCard.js"
+		},
+		"./OneTwoPageLinkFabButton": {
+			"types": "./src/orderly/one-two/OneTwoPageLinkFabButton.tsx",
+			"default": "./dist/orderly/one-two/OneTwoPageLinkFabButton.js"
+		},
+		"./ORDERLY_PATHS": {
+			"types": "./src/orderly/ORDERLY_PATHS.ts",
+			"default": "./dist/orderly/ORDERLY_PATHS.js"
+		}
 	},
-	"./CongregationsListPageLinkFabButton": {
-		"types": "./src/orderly/congregations-list/CongregationsListPageLinkFabButton.tsx",
-		"default": "./dist/orderly/congregations-list/CongregationsListPageLinkFabButton.js"
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch"
 	},
-	"./OutlinesListPageLinkItem": {
-		"types": "./src/orderly/outlines-list/OutlinesListPageLinkItem.tsx",
-		"default": "./dist/orderly/outlines-list/OutlinesListPageLinkItem.js"
+	"devDependencies": {
+		"@types/node": "^20.11.24",
+		"@types/react": "^18.2.62",
+		"vite": "^5.4.9"
 	},
-	"./OutlinesListPageLinkButton": {
-		"types": "./src/orderly/outlines-list/OutlinesListPageLinkButton.tsx",
-		"default": "./dist/orderly/outlines-list/OutlinesListPageLinkButton.js"
-	},
-	"./OutlinesListPageLinkCard": {
-		"types": "./src/orderly/outlines-list/OutlinesListPageLinkCard.tsx",
-		"default": "./dist/orderly/outlines-list/OutlinesListPageLinkCard.js"
-	},
-	"./OutlinesListPageLinkFabButton": {
-		"types": "./src/orderly/outlines-list/OutlinesListPageLinkFabButton.tsx",
-		"default": "./dist/orderly/outlines-list/OutlinesListPageLinkFabButton.js"
-	},
-	"./OneTwoPageLinkItem": {
-		"types": "./src/orderly/one-two/OneTwoPageLinkItem.tsx",
-		"default": "./dist/orderly/one-two/OneTwoPageLinkItem.js"
-	},
-	"./OneTwoPageLinkButton": {
-		"types": "./src/orderly/one-two/OneTwoPageLinkButton.tsx",
-		"default": "./dist/orderly/one-two/OneTwoPageLinkButton.js"
-	},
-	"./OneTwoPageLinkCard": {
-		"types": "./src/orderly/one-two/OneTwoPageLinkCard.tsx",
-		"default": "./dist/orderly/one-two/OneTwoPageLinkCard.js"
-	},
-	"./OneTwoPageLinkFabButton": {
-		"types": "./src/orderly/one-two/OneTwoPageLinkFabButton.tsx",
-		"default": "./dist/orderly/one-two/OneTwoPageLinkFabButton.js"
-	},
-    "./ORDERLY_PATHS": {
-      "types": "./src/orderly/ORDERLY_PATHS.ts",
-      "default": "./dist/orderly/ORDERLY_PATHS.js"
-    }
-  },
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.62",
-    "vite": "^5.4.9"
-  },
-  "dependencies": {
-    "@ionic/react": "^8.0.0",
-    "@ionic/react-router": "^8.0.0",
-    "@repo/ionic": "workspace:^",
-    "@repo/supabase": "workspace:^",
-    "@supabase/supabase-js": "^2.44.4",
-    "@tanstack/react-query": "^5.51.21",
-    "@tanstack/react-query-devtools": "^5.51.21",
-    "@types/react-router": "^5.1.20",
-    "ionicons": "^7.4.0",
-    "react": "^18.2.0",
-    "react-router": "^5.3.4",
-    "typescript": "^5.3.3"
-  }
+	"dependencies": {
+		"@ionic/react": "^8.0.0",
+		"@ionic/react-router": "^8.0.0",
+		"@repo/ionic": "workspace:^",
+		"@repo/supabase": "workspace:^",
+		"@repo/utilities": "workspace:^",
+		"@supabase/supabase-js": "^2.44.4",
+		"@tanstack/react-query": "^5.51.21",
+		"@tanstack/react-query-devtools": "^5.51.21",
+		"@types/react-router": "^5.1.20",
+		"ionicons": "^7.4.0",
+		"react": "^18.2.0",
+		"react-router": "^5.3.4",
+		"typescript": "^5.3.3"
+	}
 }

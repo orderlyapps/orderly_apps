@@ -1,17 +1,19 @@
-import { Ion{{ pascalCase type }} } from "@ionic/react";
-import { path, Param } from "../../helper/path";
-import { ComponentProps } from "react"
-import { {{ constantCase app }}_PATHS } from "../{{ constantCase app }}_PATHS";
+import { IonItem } from "@ionic/react";
+import { ComponentProps } from "react";
+import {
+  path,
+  {{ pascalCase name }}PageParams,
+} from "./use{{ pascalCase name }}PageParams";
 
-export function {{pascalCase name}}PageLink{{ pascalCase type }}({
-  param, 
+export function {{ pascalCase name }}PageLinkItem({
+  param,
   ...props
-}: ComponentProps<typeof Ion{{ pascalCase type }}> & { param?: Param }) {
+}: ComponentProps<typeof IonItem> & { param?: {{ pascalCase name }}PageParams }) {
   return (
-    <Ion{{ pascalCase type }} routerLink={path( {{ constantCase app }}_PATHS, "{{snakeCase name}}", param)} {...props}>
-      {props.children || "{{titleCase name}}"}
-    </Ion{{ pascalCase type }}>
+    <IonItem routerLink={path(param)} {...props}>
+      {props.children || "{{ titleCase name }}"}
+    </IonItem>
   );
 }
 
-// generated
+//generated using ionic-page/link.hbs

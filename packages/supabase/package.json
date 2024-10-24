@@ -33,7 +33,6 @@
   "dependencies": {
     "@ionic/react": "^8.0.0",
     "@ionic/react-router": "^8.0.0",
-    "@repo/ionic": "workspace:^",
     "@supabase/supabase-js": "^2.44.4",
     "@types/react-router": "^5.1.20",
     "ionicons": "^7.4.0",

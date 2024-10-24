@@ -1,4 +1,4 @@
-import { sortStringsByKeys } from "@repo/utlities/sortStringsByKeys";
+import { sortStringsByKeys } from "@repo/utilities/sortStringsByKeys";
 import { PublisherItem } from "./items/PublisherItem";
 import { usePublishersQuery } from "@repo/react-query/usePublishersQuery";
 

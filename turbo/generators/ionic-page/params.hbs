@@ -1,0 +1,39 @@
+import { useParams } from "react-router";
+
+export const QUERY_PLACEHOLDER = null; //"{{ camelCase name}}";
+
+const {{ constantCase name}}_PAGE_PATH = "/home/{{ kebabCase name}}";
+
+export type {{ pascalCase name}}PageParams = { id: string };
+
+export const DEFAULT_{{ constantCase name}}: {{ pascalCase name}}PageParams = {
+  id: "new",
+};
+
+export const default{{ pascalCase name}}String = new URLSearchParams(
+  DEFAULT_{{ constantCase name}}
+);
+
+export const {{ camelCase name}}PagePath = QUERY_PLACEHOLDER
+  ? `${ {{ constantCase name}}_PAGE_PATH}/:${QUERY_PLACEHOLDER}`
+  : {{ constantCase name}}_PAGE_PATH;
+
+export const path = (param?: {{ pascalCase name}}PageParams) => {
+  if (!QUERY_PLACEHOLDER) return {{ constantCase name}}_PAGE_PATH;
+  if (!param)
+    return `${ {{ constantCase name}}_PAGE_PATH}/${default{{ pascalCase name}}String.toString()}`;
+
+  const params = new URLSearchParams(param);
+
+  return {{ constantCase name}}_PAGE_PATH + "/" + params.toString();
+};
+
+export function use{{ pascalCase name}}PageParams(): {{ pascalCase name}}PageParams {
+  const { {{ camelCase name}} } = useParams<{ {{ camelCase name}}: string }>();
+  const params = Object.fromEntries(
+    new URLSearchParams({{ camelCase name}}).entries()
+  ) as {{ pascalCase name}}PageParams;
+  return params;
+}
+
+//generated using ionic-page/params.hbs

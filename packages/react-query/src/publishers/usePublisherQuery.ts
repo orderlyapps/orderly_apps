@@ -1,7 +1,7 @@
-import { supabase } from "@repo/supabase/supabase-client";
 import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@repo/supabase/supabase-client";
 
-async function getUser(id: string) {
+async function getData(id: string) {
   const { data, error } = await supabase
     .from("publishers")
     .select()
@@ -14,10 +14,9 @@ async function getUser(id: string) {
   return data;
 }
 
-export const useUserQuery = (id: string) => {
-  return useQuery({
-    queryKey: ["user"],
-    queryFn: () => getUser(id),
+export const usePublisherQuery = (id?: string | null) =>
+  useQuery({
+    queryKey: ["publisher"],
+    queryFn: () => (id ? getData(id) : Promise.resolve(null)),
     enabled: !!id,
   });
-};

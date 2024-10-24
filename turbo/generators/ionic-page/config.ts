@@ -23,6 +23,12 @@ const createPageLinks = linkTypes.map((type) => {
   };
 });
 
+const createParamsFile = {
+  type: "add",
+  path: `${newGeneratedPageLinkPath}use{{pascalCase name}}PageParams.ts`,
+  templateFile: "ionic-page/params.hbs",
+};
+
 const addPagePathFile = {
   type: "add",
   path: `${newGeneratedPageLinkPath}path.ts`,
@@ -30,10 +36,14 @@ const addPagePathFile = {
 };
 
 const addPathToPATHSObject = {
-  type: "append",
-  path: `packages/components/page-links/src/{{kebabCase app}}/{{kebabCase app}}_PATHS.ts`,
-  pattern: /PATHS = {(?<insertion>)/g,
-  template: '\t{{snakeCase name}}: "/{{kebabCase tab}}/{{kebabCase name}}",',
+  type: "modify",
+  path: "packages/components/page-links/src/{{kebabCase app}}/{{kebabCase app}}_PATHS.ts",
+  pattern: /^(.*\{)(.*)$/s,
+  template:
+    "import { {{ camelCase name }}PagePath } from './{{ kebabCase name }}/use{{ pascalCase name }}PageParams';\n" +
+    "$1" +
+    "\n\t{{snakeCase name}}: {{ camelCase name }}PagePath," +
+    "$2",
 };
 
 const addPageLinkExports = {
@@ -41,6 +51,10 @@ const addPageLinkExports = {
   path: `packages/components/page-links/package.json`,
   pattern: /"exports": {(?<insertion>)/g,
   template:
+    '\t"./use{{pascalCase name}}PageParams": {\n' +
+    '\t\t"types": "./src/orderly/{{kebabCase name}}/use{{pascalCase name}}PageParams.ts",\n' +
+    '\t\t"default": "./dist/orderly/{{kebabCase name}}/use{{pascalCase name}}PageParams.js"\n' +
+    "\t},\n" +
     '\t"./{{pascalCase name}}PageLinkItem": {\n' +
     '\t\t"types": "./src/orderly/{{kebabCase name}}/{{pascalCase name}}PageLinkItem.tsx",\n' +
     '\t\t"default": "./dist/orderly/{{kebabCase name}}/{{pascalCase name}}PageLinkItem.js"\n' +
@@ -66,12 +80,12 @@ const addRoute = {
   template:
     "  {\n" +
     "    path: {{ constantCase app }}_PATHS.{{ snakeCase name }},\n" +
-    "    // tab: 'string',\n" +
-    "    // icon: homeOutline,\n" +
+    // "    // tab: 'string',\n" +
+    // "    // icon: homeOutline,\n" +
     "    Component: lazy(\n" +
     "      () => import('./pages/{{kebabCase name}}/{{pascalCase name}}Page')\n" +
     "    ),\n" +
-    "    // redirect: true\n" +
+    // "    // redirect: true\n" +
     "  },",
 };
 
@@ -100,6 +114,7 @@ export const ionicPage = (plop: PlopTypes.NodePlopAPI) => {
     actions: [
       createPage,
       ...createPageLinks,
+      createParamsFile,
       // addPagePathFile,
       addPathToPATHSObject,
       addPageLinkExports,
@@ -131,3 +146,10 @@ export const ionicPage = (plop: PlopTypes.NodePlopAPI) => {
 //     '\n\t{{kebabCase name}}: "/{{kebabCase tab}}/{{kebabCase name}}",' +
 //     "$2",
 // },
+
+// const addPathToPATHSObject = {
+//   type: "append",
+//   path: `packages/components/page-links/src/{{kebabCase app}}/{{kebabCase app}}_PATHS.ts`,
+//   pattern: /PATHS = {(?<insertion>)/g,
+//   template: '\t{{snakeCase name}}: "/{{kebabCase tab}}/{{kebabCase name}}",',
+// };

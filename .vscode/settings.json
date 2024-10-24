@@ -66,8 +66,9 @@
     "**/orderly-2": false,
     "**/.vscode": true,
     ".files": true,
-    "supabase": false,
-    "turbo": true
+    "supabase": true,
+    "turbo": true,
+    "packages/css": true
   },
   "explorerExclude.backup": {}
 }

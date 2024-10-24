@@ -1,12 +1,12 @@
 {
-  "name": "@repo/zustand",
+  "name": "@repo/forms",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "exports": {
-    "./useStore": {
-      "types": "./src/useStore.ts",
-      "default": "./dist/useStore.js"
+    "./PublishersDetails": {
+      "types": "./src/PublishersDetails.tsx",
+      "default": "./dist/PublishersDetails.js"
     }
   },
   "scripts": {
@@ -21,13 +21,19 @@
   "dependencies": {
     "@ionic/react": "^8.0.0",
     "@ionic/react-router": "^8.0.0",
+    "@repo/ionic": "workspace:^",
+    "@repo/page-links": "workspace:^",
+    "@repo/react-query": "workspace:^",
     "@repo/supabase": "workspace:^",
+    "@repo/utilities": "workspace:^",
+    "@repo/zustand": "workspace:^",
     "@supabase/supabase-js": "^2.44.4",
+    "@tanstack/react-query": "^5.51.21",
+    "@tanstack/react-query-devtools": "^5.51.21",
     "@types/react-router": "^5.1.20",
     "ionicons": "^7.4.0",
     "react": "^18.2.0",
     "react-router": "^5.3.4",
-    "typescript": "^5.3.3",
-    "zustand": "^4.5.4"
+    "typescript": "^5.3.3"
   }
 }

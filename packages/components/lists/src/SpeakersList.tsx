@@ -1,4 +1,4 @@
-import { sortStringsByKeys } from "@repo/utlities/sortStringsByKeys";
+import { sortStringsByKeys } from "@repo/utilities/sortStringsByKeys";
 import { SpeakerItem } from "./items/SpeakerItem";
 import { useSpeakersQuery } from "@repo/react-query/useSpeakersQuery";
 

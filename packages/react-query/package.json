@@ -4,21 +4,29 @@
   "private": true,
   "license": "MIT",
   "exports": {
+    "./test": {
+      "types": "./src/test.ts",
+      "default": "./dist/test.js"
+    },
+    "./usePublisherQuery": {
+      "types": "./src/publishers/usePublisherQuery.ts",
+      "default": "./dist/publishers/usePublisherQuery.js"
+    },
     "./usePublishersQuery": {
-      "types": "./src/people/usePublishersQuery.ts",
-      "default": "./dist/people/usePublishersQuery.js"
+      "types": "./src/publishers/usePublishersQuery.ts",
+      "default": "./dist/publishers/usePublishersQuery.js"
     },
     "./useCongregationsQuery": {
       "types": "./src/congregations/useCongregationsQuery.ts",
       "default": "./dist/congregations/useCongregationsQuery.js"
     },
     "./useOutlinesQuery": {
-      "types": "./src/public-talks/useOutlinesQuery.ts",
-      "default": "./dist/public-talks/useOutlinesQuery.js"
+      "types": "./src/outlines/useOutlinesQuery.ts",
+      "default": "./dist/outlines/useOutlinesQuery.js"
     },
     "./useSpeakersQuery": {
-      "types": "./src/public-talks/useSpeakersQuery.ts",
-      "default": "./dist/public-talks/useSpeakersQuery.js"
+      "types": "./src/speakers/useSpeakersQuery.ts",
+      "default": "./dist/speakers/useSpeakersQuery.js"
     },
     "./ReactQueryProvider": {
       "types": "./src/ReactQueryProvider.tsx",

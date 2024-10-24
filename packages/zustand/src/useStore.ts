@@ -2,23 +2,17 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { createSelectors } from "./createSelectors";
 import { Session } from "@supabase/supabase-js";
-import { Database, Tables } from "@repo/supabase/types";
-
-type Publisher = Tables<"publishers">;
+import { Publisher } from "@repo/supabase/types";
 
 const initialState = {
-  personDetails: {} as Publisher,
-  publicTalkDetails:
-    {} as Database["public"]["Views"]["public_talk_assignment_details"]["Row"],
-  user: {} as Publisher,
-  congregationDetails:
-    {} as Database["public"]["Tables"]["congregations"]["Update"],
+  publisherDetails: {} as Partial<Publisher>,
   session: null as Session | null,
   online: true as boolean,
   theme: "light" as "dark" | "light" | "auto",
 };
 
 export type StoreState = typeof initialState;
+export type StoreProperties = keyof typeof initialState;
 
 type StoreActions = {
   resetStore: () => void;

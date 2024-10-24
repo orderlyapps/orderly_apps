@@ -4,10 +4,10 @@ import { Speaker } from "@repo/supabase/types";
 import { PostgrestError } from "@supabase/supabase-js";
 
 async function getData() {
-  const { data, error } = await supabase.from("speakers").select() as {
+  const { data, error } = (await supabase.from("speakers").select("*")) as {
     data: Speaker[];
     error: PostgrestError | null;
-  };;
+  };
 
   if (error) {
     throw new Error(error.message);

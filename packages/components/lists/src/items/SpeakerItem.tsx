@@ -1,7 +1,7 @@
 import { IonItem, IonLabel } from "@ionic/react";
 import { Speaker } from "@repo/supabase/types";
-import { formatName } from "@repo/utlities/formatName";
-import { sortStringsNumerically } from "@repo/utlities/sortStringsNumerically";
+import { formatName } from "@repo/utilities/formatName";
+import { sortStringsNumerically } from "@repo/utilities/sortStringsNumerically";
 
 export function SpeakerItem({ speaker }: { speaker: Speaker }) {
   return (

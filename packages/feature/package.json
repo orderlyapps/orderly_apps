@@ -20,9 +20,11 @@
   "dependencies": {
     "@ionic/react": "^8.0.0",
     "@ionic/react-router": "^8.0.0",
+    "@repo/forms": "workspace:^",
     "@repo/ionic": "workspace:^",
     "@repo/lists": "workspace:^",
     "@repo/page-links": "workspace:^",
+    "@repo/react-query": "workspace:^",
     "@repo/supabase": "workspace:^",
     "@types/react-router": "^5.1.20",
     "ionicons": "^7.4.0",

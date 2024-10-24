@@ -1,9 +1,17 @@
 {
-  "name": "@repo/utlities",
+  "name": "@repo/utilities",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "exports": {
+    "./unflattenObject": {
+      "types": "./src/unflattenObject.ts",
+      "default": "./dist/unflattenObject.js"
+    },
+    "./flattenObject": {
+      "types": "./src/flattenObject.ts",
+      "default": "./dist/flattenObject.js"
+    },
     "./formatName": {
       "types": "./src/formatName.ts",
       "default": "./dist/formatName.js"

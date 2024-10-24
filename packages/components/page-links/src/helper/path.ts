@@ -17,9 +17,10 @@ export type Param = string | undefined | null;
 export const path = (
   paths: { [key: string]: string },
   page: string,
-  param?: Param
+  param?: Param,
+  query?: Param
 ) => {
   if (param) return `${paths[page]}/${param}`;
+  if (query) return `${paths[page]}/new`;
   return paths[page];
 };
-
